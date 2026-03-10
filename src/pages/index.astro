@@ -1,0 +1,558 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="八字研究所 | 免費線上八字排盤・AI 智能命理分析・四柱八字解析"
+  description="傳承千年的東方命理智慧，結合現代 AI 科技，提供免費線上八字排盤與命理分析。輸入出生年月日時，即時獲得四柱八字命盤解讀。"
+  activePage="home"
+>
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="/images/hero/bagua-cosmos.webp" alt="" class="hero-bg-img" loading="eager" />
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="/images/hero/divination-master.mp4" type="video/mp4" />
+      </video>
+      <canvas class="hero-canvas" id="hero-canvas"></canvas>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="container hero-content">
+      <span class="overline hero-overline">免費・即時排盤・AI 智慧解讀</span>
+      <h1>四柱八字命理<br>解讀你的人生密碼</h1>
+      <p class="hero-desc">傳承千年的東方命理智慧，結合現代科技，為你提供即時、精準的八字排盤與命理分析。</p>
+
+      <form class="hero-form" id="hero-form">
+        <div class="hero-form-grid">
+          <div class="form-group">
+            <label for="hero-date">出生日期</label>
+            <input type="date" id="hero-date" class="form-input" required />
+          </div>
+          <div class="form-group">
+            <label for="hero-hour">出生時辰</label>
+            <select id="hero-hour" class="form-input" required>
+              <option value="">請選擇時辰</option>
+              <option value="0">子時 (23:00–01:00)</option>
+              <option value="1">丑時 (01:00–03:00)</option>
+              <option value="3">寅時 (03:00–05:00)</option>
+              <option value="5">卯時 (05:00–07:00)</option>
+              <option value="7">辰時 (07:00–09:00)</option>
+              <option value="9">巳時 (09:00–11:00)</option>
+              <option value="11">午時 (11:00–13:00)</option>
+              <option value="13">未時 (13:00–15:00)</option>
+              <option value="15">申時 (15:00–17:00)</option>
+              <option value="17">酉時 (17:00–19:00)</option>
+              <option value="19">戌時 (19:00–21:00)</option>
+              <option value="21">亥時 (21:00–23:00)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>性別</label>
+            <div class="form-radio-group">
+              <label><input type="radio" name="gender" value="male" checked /> 男</label>
+              <label><input type="radio" name="gender" value="female" /> 女</label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg hero-submit">免費排盤</button>
+      </form>
+
+      <p class="hero-proof">已有超過 <strong>2,000</strong> 人使用</p>
+    </div>
+  </section>
+
+  <!-- Value Props -->
+  <section class="section" id="value-props">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="overline">為什麼選擇八字研究所</span>
+        <h2>全方位的命理服務</h2>
+      </div>
+      <div class="grid-4">
+        <div class="card fade-up">
+          <div class="card-icon">⚡</div>
+          <h3>即時排盤</h3>
+          <p>輸入出生年月日時，一鍵完成四柱八字排盤，即時獲得完整命盤。</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-icon">🤖</div>
+          <h3>AI 分析</h3>
+          <p>結合人工智慧技術，根據你的命盤提供個人化的命理解讀與建議。</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-icon">🎁</div>
+          <h3>完全免費</h3>
+          <p>所有排盤工具與學習資源完全免費開放，無需註冊即可使用。</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-icon">📜</div>
+          <h3>命理智慧</h3>
+          <p>忠於傳統，提供完整的天干地支、五行、十神分析，深入理解命盤。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="stats-grid fade-up" id="stats">
+        <div class="stat-item">
+          <div class="stat-number" data-target="2000">0</div>
+          <div class="stat-label">排盤次數</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="10">0</div>
+          <div class="stat-label">天干</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="12">0</div>
+          <div class="stat-label">地支</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="4.9" data-decimal="true">0</div>
+          <div class="stat-label">使用者好評</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Preview -->
+  <section class="section" id="tools-preview">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="overline">命理工具</span>
+        <h2>探索你的命運地圖</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card fade-up">
+          <div class="card-icon">🏛️</div>
+          <h3>八字排盤</h3>
+          <p>輸入出生資料，即時生成四柱八字命盤，含五行分析與十神解讀。</p>
+          <a href="/tools/chart-calculator" class="btn btn-outline" style="margin-top: 1rem;">開始排盤</a>
+        </div>
+        <div class="card fade-up">
+          <div class="card-icon">🧠</div>
+          <h3>AI 命理分析</h3>
+          <p>根據你的命盤，提供個人化的 AI 深度命理解讀與人生建議。</p>
+          <a href="/tools/chart-calculator" class="btn btn-outline" style="margin-top: 1rem;">立即體驗</a>
+        </div>
+        <div class="card fade-up">
+          <div class="card-icon">📅</div>
+          <h3>流年運勢</h3>
+          <p>查詢每年運勢走向，了解大運與流年對命盤的影響。</p>
+          <a href="/tools" class="btn btn-outline" style="margin-top: 1rem;">敬請期待</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section section-alt" id="testimonials">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="overline">使用者回饋</span>
+        <h2>他們怎麼說</h2>
+      </div>
+      <div class="grid-4">
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">「排盤速度很快，結果跟我之前找老師算的一模一樣。AI 分析的建議也很實用，推薦給所有對命理有興趣的人！」</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">陳</div>
+            <div>
+              <div class="testimonial-author-name">陳小明</div>
+              <div class="testimonial-author-title">軟體工程師</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">「一直想學八字但不知道從何開始，這個網站的學習資源很完整，排盤工具也很方便，終於可以自己看命盤了。」</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">林</div>
+            <div>
+              <div class="testimonial-author-name">林美玲</div>
+              <div class="testimonial-author-title">行銷經理</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">「完全免費這點真的很佛心！五行分析圖表一目了然，十神解讀也寫得很清楚，是我用過最好的排盤工具。」</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">王</div>
+            <div>
+              <div class="testimonial-author-name">王大偉</div>
+              <div class="testimonial-author-title">自由工作者</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">「AI 命理分析的結果讓我很驚訝，對我的性格描述非常準確。介面也很美觀，用起來很舒服。」</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">張</div>
+            <div>
+              <div class="testimonial-author-name">張雅婷</div>
+              <div class="testimonial-author-title">設計師</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mid-page CTA -->
+  <section class="cta-section">
+    <div class="container fade-up">
+      <h2>還在猶豫？試一次就知道</h2>
+      <p>不需要任何命理知識，只要輸入你的出生資料，讓千年的智慧為你指引方向。</p>
+      <a href="/tools/chart-calculator" class="btn btn-white btn-lg">立即免費排盤</a>
+    </div>
+  </section>
+
+  <!-- Featured Articles -->
+  <section class="section" id="featured-articles">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="overline">學習專欄</span>
+        <h2>精選命理文章</h2>
+        <p>從入門到進階，帶你深入了解八字命理的世界。</p>
+      </div>
+      <div class="grid-3">
+        <article class="article-card fade-up">
+          <div class="article-card-img img-skeleton" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+            🏛️
+          </div>
+          <div class="article-card-body">
+            <span class="article-card-category">基礎入門</span>
+            <h3><a href="/articles/what-is-bazi">八字入門：什麼是四柱八字？</a></h3>
+            <p class="article-card-meta">10 分鐘閱讀</p>
+          </div>
+        </article>
+        <article class="article-card fade-up">
+          <div class="article-card-img img-skeleton" style="background: linear-gradient(135deg, #e8eaf6, #c5cae9); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+            📜
+          </div>
+          <div class="article-card-body">
+            <span class="article-card-category">天干地支</span>
+            <h3><a href="/articles/heavenly-stems-earthly-branches">天干地支完全指南</a></h3>
+            <p class="article-card-meta">12 分鐘閱讀</p>
+          </div>
+        </article>
+        <article class="article-card fade-up">
+          <div class="article-card-img img-skeleton" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+            🔥
+          </div>
+          <div class="article-card-body">
+            <span class="article-card-category">五行學說</span>
+            <h3><a href="/articles/five-elements">五行相生相剋的奧秘</a></h3>
+            <p class="article-card-meta">10 分鐘閱讀</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="newsletter-section">
+    <div class="container fade-up">
+      <h2>訂閱八字研究所電子報</h2>
+      <p>每週精選一篇命理學習文章，直送你的信箱。</p>
+      <form class="newsletter-form" id="newsletter-form">
+        <input type="email" placeholder="輸入你的 Email" required />
+        <button type="submit">訂閱</button>
+      </form>
+      <div class="newsletter-msg"></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Hero overrides */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 64px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+  }
+
+  .hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.85), rgba(44, 10, 20, 0.75));
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+
+  .hero-overline {
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(220, 20, 60, 0.3);
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+  }
+
+  .hero-content h1 {
+    color: #fff;
+    margin: 1.5rem 0 1rem;
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+  }
+
+  .hero-desc {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.15rem;
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-form {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .hero-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-form .form-group:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .hero-form label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+  }
+
+  .hero-form .form-input {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+  }
+
+  .hero-form .form-input:focus {
+    border-color: var(--crimson-light);
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .hero-form option {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .hero-form .form-radio-group {
+    color: rgba(255, 255, 255, 0.9);
+    padding-top: 0.3rem;
+  }
+
+  .hero-submit {
+    width: 100%;
+  }
+
+  .hero-proof {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .hero-proof strong {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  @media (max-width: 480px) {
+    .hero-form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // === Hero form redirect ===
+  const heroForm = document.getElementById('hero-form');
+  heroForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const date = (document.getElementById('hero-date') as HTMLInputElement)?.value;
+    const hour = (document.getElementById('hero-hour') as HTMLSelectElement)?.value;
+    const gender = (document.querySelector('input[name="gender"]:checked') as HTMLInputElement)?.value;
+
+    if (date && hour !== '') {
+      const params = new URLSearchParams({ date, hour, gender: gender || 'male', auto: '1' });
+      window.location.href = `/tools/chart-calculator?${params.toString()}`;
+    }
+  });
+
+  // === Bagua particle canvas animation ===
+  const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let animId: number;
+
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const symbols = ['☰', '☱', '☲', '☳', '☴', '☵', '☶', '☷', '太', '極', '陰', '陽', '金', '木', '水', '火', '土'];
+
+    interface Particle {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      symbol: string;
+      size: number;
+      opacity: number;
+      rotation: number;
+      rotationSpeed: number;
+    }
+
+    const particles: Particle[] = [];
+    const particleCount = 35;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        symbol: symbols[Math.floor(Math.random() * symbols.length)],
+        size: 12 + Math.random() * 20,
+        opacity: 0.08 + Math.random() * 0.15,
+        rotation: Math.random() * Math.PI * 2,
+        rotationSpeed: (Math.random() - 0.5) * 0.01,
+      });
+    }
+
+    function animate() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rotation += p.rotationSpeed;
+
+        if (p.x < -50) p.x = canvas.width + 50;
+        if (p.x > canvas.width + 50) p.x = -50;
+        if (p.y < -50) p.y = canvas.height + 50;
+        if (p.y > canvas.height + 50) p.y = -50;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.font = `${p.size}px serif`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(p.symbol, 0, 0);
+        ctx.restore();
+      }
+
+      animId = requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // Cleanup on page leave
+    document.addEventListener('astro:before-swap', () => {
+      cancelAnimationFrame(animId);
+    });
+  }
+
+  // === Stat counter animation ===
+  const statsSection = document.getElementById('stats');
+  if (statsSection) {
+    const statObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const numbers = statsSection.querySelectorAll('.stat-number');
+            numbers.forEach((el) => {
+              const target = parseFloat(el.getAttribute('data-target') || '0');
+              const isDecimal = el.getAttribute('data-decimal') === 'true';
+              const duration = 2000;
+              const startTime = performance.now();
+
+              function updateCounter(currentTime: number) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = eased * target;
+
+                if (isDecimal) {
+                  el.textContent = current.toFixed(1);
+                } else {
+                  el.textContent = Math.floor(current).toLocaleString() + (target >= 2000 ? '+' : '');
+                }
+
+                if (progress < 1) {
+                  requestAnimationFrame(updateCounter);
+                }
+              }
+
+              requestAnimationFrame(updateCounter);
+            });
+            statObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    statObserver.observe(statsSection);
+  }
+</script>

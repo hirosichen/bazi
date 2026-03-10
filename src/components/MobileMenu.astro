@@ -1,0 +1,124 @@
+---
+export interface Props {
+  activePage?: string;
+}
+
+const { activePage = '' } = Astro.props;
+---
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-header">
+    <a href="/" class="nav-brand" aria-label="八字研究所首頁">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="18" cy="18" r="16" stroke="#b22234" stroke-width="2.5" fill="none" />
+        <circle cx="18" cy="18" r="13.5" stroke="#b22234" stroke-width="0.8" fill="none" />
+        <path d="M14 11 L11 25" stroke="#b22234" stroke-width="2.2" stroke-linecap="round" />
+        <path d="M22 11 L25 25" stroke="#b22234" stroke-width="2.2" stroke-linecap="round" />
+        <line x1="12" y1="16" x2="24" y2="16" stroke="#b8860b" stroke-width="1.2" stroke-linecap="round" />
+        <line x1="13" y1="20" x2="23" y2="20" stroke="#b8860b" stroke-width="1.2" stroke-linecap="round" />
+      </svg>
+      <span>八字研究所</span>
+    </a>
+
+    <button class="mobile-menu-close" id="mobile-menu-close" aria-label="關閉選單">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="mobile-menu-body">
+    <!-- Simple links -->
+    <a href="/" class="mobile-link">首頁</a>
+    <a href="/about" class="mobile-link">關於</a>
+
+    <!-- Articles group -->
+    <div class="mobile-services-group">
+      <button class="mobile-services-toggle" data-group="articles" aria-expanded="false">
+        文章
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+        </svg>
+      </button>
+      <div class="mobile-services-list" data-group-list="articles">
+        <a href="/articles">所有文章</a>
+        <a href="/articles/category/basics">基礎入門</a>
+        <a href="/articles/category/stems-branches">天干地支</a>
+        <a href="/articles/category/five-elements">五行學說</a>
+        <a href="/articles/category/ten-gods">十神解析</a>
+        <a href="/articles/category/practice">命理實戰</a>
+      </div>
+    </div>
+
+    <!-- Tools group -->
+    <div class="mobile-services-group">
+      <button class="mobile-services-toggle" data-group="tools" aria-expanded="false">
+        工具
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+        </svg>
+      </button>
+      <div class="mobile-services-list" data-group-list="tools">
+        <a href="/tools">所有工具</a>
+        <a href="/tools/bazi-chart">八字排盤</a>
+        <a href="/tools/compatibility">合盤分析</a>
+        <a href="/tools/yearly-fortune">流年運勢</a>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="mobile-cta">
+      <a href="/tools/bazi-chart" class="btn btn--primary btn--lg">免費排盤</a>
+      <a href="/tools/bazi-chart#ai" class="btn btn--secondary btn--lg">AI 命理分析</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Close button
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navToggle = document.getElementById('nav-toggle');
+
+  if (closeBtn && mobileMenu) {
+    closeBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('is-open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (navToggle) {
+        navToggle.classList.remove('is-active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // Expandable groups
+  document.querySelectorAll('.mobile-services-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const group = btn.getAttribute('data-group');
+      const list = document.querySelector(`[data-group-list="${group}"]`);
+      if (!list) return;
+
+      const isExpanded = list.classList.contains('is-expanded');
+      list.classList.toggle('is-expanded', !isExpanded);
+      btn.classList.toggle('is-expanded', !isExpanded);
+      btn.setAttribute('aria-expanded', String(!isExpanded));
+    });
+  });
+
+  // Close on link click
+  document.querySelectorAll('.mobile-menu a').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (mobileMenu) {
+        mobileMenu.classList.remove('is-open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (navToggle) {
+          navToggle.classList.remove('is-active');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+  });
+</script>

@@ -1,0 +1,1013 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="八字排盤 | 免費線上四柱八字命盤計算"
+  description="免費線上八字排盤工具，輸入出生年月日時，即時計算你的四柱八字命盤，含五行分析、十神解讀與 AI 命理分析。"
+  keywords="八字排盤,四柱八字,命盤計算,免費排盤,八字計算器,五行分析,十神"
+  activePage="chart-calculator"
+>
+  <section class="calc-page">
+    <div class="container">
+      <!-- Step 1: Input Form -->
+      <div class="calc-step" id="step-input">
+        <div class="calc-header">
+          <span class="overline">命理工具</span>
+          <h1>八字排盤</h1>
+          <p>輸入你的出生資料，即時計算四柱八字命盤。</p>
+        </div>
+
+        <form class="calc-form" id="bazi-form">
+          <div class="calc-form-grid">
+            <div class="form-group">
+              <label for="birth-date">出生日期</label>
+              <input type="date" id="birth-date" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label for="birth-hour">出生時辰</label>
+              <select id="birth-hour" class="form-input" required>
+                <option value="">請選擇時辰</option>
+                <option value="0">子時 (23:00–01:00)</option>
+                <option value="1">丑時 (01:00–03:00)</option>
+                <option value="3">寅時 (03:00–05:00)</option>
+                <option value="5">卯時 (05:00–07:00)</option>
+                <option value="7">辰時 (07:00–09:00)</option>
+                <option value="9">巳時 (09:00–11:00)</option>
+                <option value="11">午時 (11:00–13:00)</option>
+                <option value="13">未時 (13:00–15:00)</option>
+                <option value="15">申時 (15:00–17:00)</option>
+                <option value="17">酉時 (17:00–19:00)</option>
+                <option value="19">戌時 (19:00–21:00)</option>
+                <option value="21">亥時 (21:00–23:00)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>性別</label>
+              <div class="form-radio-group">
+                <label><input type="radio" name="calc-gender" value="male" checked /> 男</label>
+                <label><input type="radio" name="calc-gender" value="female" /> 女</label>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg calc-submit">開始排盤</button>
+        </form>
+      </div>
+
+      <!-- Step 2: Loading -->
+      <div class="calc-step calc-hidden" id="step-loading">
+        <div class="calc-loading">
+          <div class="calc-loading-spinner">
+            <span class="calc-loading-symbol">☯</span>
+          </div>
+          <p>正在計算你的命盤...</p>
+        </div>
+      </div>
+
+      <!-- Step 3: Results -->
+      <div class="calc-step calc-hidden" id="step-result">
+        <div class="calc-result-header">
+          <h2>你的八字命盤</h2>
+          <button class="btn btn-outline" id="recalc-btn" style="font-size: 0.85rem; padding: 0.5rem 1rem;">重新排盤</button>
+        </div>
+
+        <div class="calc-meta" id="result-meta"></div>
+
+        <!-- Four Pillars Chart -->
+        <div class="bazi-chart" id="bazi-chart">
+          <div class="bazi-pillar" id="pillar-year">
+            <div class="bazi-pillar-label">年柱</div>
+            <div class="bazi-pillar-god" id="god-year"></div>
+            <div class="bazi-pillar-stem" id="stem-year"></div>
+            <div class="bazi-pillar-branch" id="branch-year"></div>
+            <div class="bazi-pillar-nayin" id="nayin-year"></div>
+          </div>
+          <div class="bazi-pillar" id="pillar-month">
+            <div class="bazi-pillar-label">月柱</div>
+            <div class="bazi-pillar-god" id="god-month"></div>
+            <div class="bazi-pillar-stem" id="stem-month"></div>
+            <div class="bazi-pillar-branch" id="branch-month"></div>
+            <div class="bazi-pillar-nayin" id="nayin-month"></div>
+          </div>
+          <div class="bazi-pillar bazi-pillar-day" id="pillar-day">
+            <div class="bazi-pillar-label">日柱（日主）</div>
+            <div class="bazi-pillar-god" id="god-day">日主</div>
+            <div class="bazi-pillar-stem" id="stem-day"></div>
+            <div class="bazi-pillar-branch" id="branch-day"></div>
+            <div class="bazi-pillar-nayin" id="nayin-day"></div>
+          </div>
+          <div class="bazi-pillar" id="pillar-hour">
+            <div class="bazi-pillar-label">時柱</div>
+            <div class="bazi-pillar-god" id="god-hour"></div>
+            <div class="bazi-pillar-stem" id="stem-hour"></div>
+            <div class="bazi-pillar-branch" id="branch-hour"></div>
+            <div class="bazi-pillar-nayin" id="nayin-hour"></div>
+          </div>
+        </div>
+
+        <!-- Five Elements -->
+        <div class="calc-section">
+          <h3>五行分布</h3>
+          <div class="elements-chart" id="elements-chart"></div>
+          <div class="elements-analysis" id="elements-analysis"></div>
+        </div>
+
+        <!-- Ten Gods -->
+        <div class="calc-section">
+          <h3>十神分析</h3>
+          <div class="ten-gods-grid" id="ten-gods-grid"></div>
+        </div>
+
+        <!-- Day Master -->
+        <div class="calc-section">
+          <h3>日主分析</h3>
+          <div class="day-master-box" id="day-master-box"></div>
+        </div>
+
+        <!-- AI Interpretation Gate -->
+        <div class="calc-section ai-section" id="ai-section">
+          <h3>AI 命理解讀</h3>
+          <p class="ai-desc">想要更深入的命理解讀？輸入你的 Email，免費獲得 AI 命理大師的個人化分析。</p>
+          <form class="ai-gate-form" id="ai-gate-form">
+            <div class="ai-gate-row">
+              <input type="email" id="ai-email" class="form-input" placeholder="輸入你的 Email" required />
+              <button type="submit" class="btn btn-primary">獲取 AI 解讀</button>
+            </div>
+            <div class="ai-question-group">
+              <label for="ai-question">想特別了解的方向（選填）</label>
+              <select id="ai-question" class="form-input">
+                <option value="">整體命盤分析</option>
+                <option value="career">事業與工作發展</option>
+                <option value="wealth">財運與投資方向</option>
+                <option value="love">感情與婚姻</option>
+                <option value="health">健康與養生</option>
+              </select>
+            </div>
+          </form>
+          <div class="ai-result calc-hidden" id="ai-result">
+            <div class="ai-loading calc-hidden" id="ai-loading">
+              <div class="calc-loading-spinner" style="margin-bottom: 1rem;">
+                <span class="calc-loading-symbol" style="font-size: 2rem;">☯</span>
+              </div>
+              <p>AI 命理大師正在分析你的命盤...</p>
+            </div>
+            <div class="ai-content" id="ai-content"></div>
+          </div>
+        </div>
+
+        <!-- Consultation Upsell -->
+        <div class="calc-section consult-section">
+          <h3>預約一對一命理諮詢</h3>
+          <p>想要更深入、更個人化的命理指導？預約我們的專業命理諮詢服務。</p>
+          <form class="consult-form" id="consult-form">
+            <div class="calc-form-grid">
+              <div class="form-group">
+                <label for="consult-name">姓名</label>
+                <input type="text" id="consult-name" class="form-input" required />
+              </div>
+              <div class="form-group">
+                <label for="consult-email">Email</label>
+                <input type="email" id="consult-email" class="form-input" required />
+              </div>
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label for="consult-message">想了解的問題</label>
+                <textarea id="consult-message" class="form-input" rows="3" placeholder="例如：想了解今年的事業運勢..."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">送出諮詢預約</button>
+          </form>
+          <div class="consult-msg" id="consult-msg"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .calc-page {
+    padding: 8rem 0 4rem;
+    min-height: 100vh;
+  }
+
+  .calc-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .calc-header h1 {
+    margin: 0.5rem 0;
+  }
+
+  .calc-header p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+  }
+
+  .calc-hidden {
+    display: none !important;
+  }
+
+  .calc-form {
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--bg-alt);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+  }
+
+  .calc-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .calc-form-grid .form-group:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .calc-submit {
+    width: 100%;
+  }
+
+  /* Loading */
+  .calc-loading {
+    text-align: center;
+    padding: 6rem 0;
+  }
+
+  .calc-loading-spinner {
+    display: inline-block;
+    animation: spin 2s linear infinite;
+    margin-bottom: 1.5rem;
+  }
+
+  .calc-loading-symbol {
+    font-size: 4rem;
+    display: block;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Results */
+  .calc-result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .calc-meta {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    padding: 1rem 1.5rem;
+    background: var(--bg-alt);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Four Pillars */
+  .bazi-chart {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .bazi-pillar {
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .bazi-pillar-day {
+    border-color: var(--crimson);
+    box-shadow: 0 0 0 1px var(--crimson);
+  }
+
+  .bazi-pillar-label {
+    background: var(--bg-alt);
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-light);
+  }
+
+  .bazi-pillar-day .bazi-pillar-label {
+    background: var(--crimson-bg);
+    color: var(--crimson);
+  }
+
+  .bazi-pillar-god {
+    padding: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--text-lighter);
+  }
+
+  .bazi-pillar-stem {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    padding: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .bazi-pillar-branch {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    padding: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .bazi-pillar-nayin {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-lighter);
+    background: var(--bg-alt);
+  }
+
+  /* Five Elements */
+  .calc-section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: var(--bg-alt);
+    border-radius: var(--radius-md);
+  }
+
+  .calc-section h3 {
+    margin-bottom: 1.25rem;
+    font-size: 1.3rem;
+  }
+
+  .elements-chart {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    align-items: flex-end;
+    height: 180px;
+  }
+
+  .element-bar-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+  }
+
+  .element-bar {
+    width: 100%;
+    max-width: 60px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    transition: height 0.6s ease;
+    position: relative;
+  }
+
+  .element-bar-count {
+    position: absolute;
+    top: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .element-bar-label {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .elements-analysis {
+    padding: 1rem;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  /* Ten Gods */
+  .ten-gods-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+  }
+
+  .ten-god-item {
+    text-align: center;
+    padding: 1rem;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+  }
+
+  .ten-god-pillar {
+    font-size: 0.8rem;
+    color: var(--text-lighter);
+    margin-bottom: 0.25rem;
+  }
+
+  .ten-god-name {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--crimson);
+    margin-bottom: 0.25rem;
+  }
+
+  .ten-god-meaning {
+    font-size: 0.78rem;
+    color: var(--text-light);
+  }
+
+  /* Day Master */
+  .day-master-box {
+    padding: 1.5rem;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    border-left: 4px solid var(--crimson);
+  }
+
+  .day-master-box h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .day-master-box p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* AI Section */
+  .ai-section {
+    background: linear-gradient(135deg, #1a1a2e, #2c0a14);
+    color: #fff;
+  }
+
+  .ai-section h3 {
+    color: #fff;
+  }
+
+  .ai-desc {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+  }
+
+  .ai-gate-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .ai-gate-row input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+
+  .ai-gate-row input::placeholder {
+    color: #888;
+  }
+
+  .ai-question-group {
+    margin-bottom: 1rem;
+  }
+
+  .ai-question-group label {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .ai-question-group select {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .ai-question-group select option {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .ai-result {
+    margin-top: 1.5rem;
+  }
+
+  .ai-loading p {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .ai-content {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.85;
+    white-space: pre-wrap;
+    font-size: 0.95rem;
+  }
+
+  /* Consult */
+  .consult-section {
+    background: var(--bg);
+    border: 2px solid var(--crimson-bg);
+  }
+
+  .consult-section h3 {
+    color: var(--crimson);
+  }
+
+  .consult-section > p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .consult-form textarea {
+    resize: vertical;
+  }
+
+  .consult-msg {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    min-height: 1.4rem;
+  }
+
+  @media (max-width: 640px) {
+    .bazi-chart {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .ten-gods-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .calc-form-grid {
+      grid-template-columns: 1fr;
+    }
+    .ai-gate-row {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  // ===== Bazi Calculation Engine (inline for client-side) =====
+
+  const HEAVENLY_STEMS = [
+    { index: 0, name: '甲', element: '木', yinYang: '陽', color: '#2d8a56' },
+    { index: 1, name: '乙', element: '木', yinYang: '陰', color: '#3da868' },
+    { index: 2, name: '丙', element: '火', yinYang: '陽', color: '#c44d4d' },
+    { index: 3, name: '丁', element: '火', yinYang: '陰', color: '#d4756b' },
+    { index: 4, name: '戊', element: '土', yinYang: '陽', color: '#c49a2a' },
+    { index: 5, name: '己', element: '土', yinYang: '陰', color: '#d4a84c' },
+    { index: 6, name: '庚', element: '金', yinYang: '陽', color: '#8a8a96' },
+    { index: 7, name: '辛', element: '金', yinYang: '陰', color: '#a8a8b4' },
+    { index: 8, name: '壬', element: '水', yinYang: '陽', color: '#3d7ab8' },
+    { index: 9, name: '癸', element: '水', yinYang: '陰', color: '#6ba3d6' },
+  ];
+
+  const EARTHLY_BRANCHES = [
+    { index: 0, name: '子', element: '水', yinYang: '陽', animal: '鼠', hours: '23:00-01:00' },
+    { index: 1, name: '丑', element: '土', yinYang: '陰', animal: '牛', hours: '01:00-03:00' },
+    { index: 2, name: '寅', element: '木', yinYang: '陽', animal: '虎', hours: '03:00-05:00' },
+    { index: 3, name: '卯', element: '木', yinYang: '陰', animal: '兔', hours: '05:00-07:00' },
+    { index: 4, name: '辰', element: '土', yinYang: '陽', animal: '龍', hours: '07:00-09:00' },
+    { index: 5, name: '巳', element: '火', yinYang: '陰', animal: '蛇', hours: '09:00-11:00' },
+    { index: 6, name: '午', element: '火', yinYang: '陽', animal: '馬', hours: '11:00-13:00' },
+    { index: 7, name: '未', element: '土', yinYang: '陰', animal: '羊', hours: '13:00-15:00' },
+    { index: 8, name: '申', element: '金', yinYang: '陽', animal: '猴', hours: '15:00-17:00' },
+    { index: 9, name: '酉', element: '金', yinYang: '陰', animal: '雞', hours: '17:00-19:00' },
+    { index: 10, name: '戌', element: '土', yinYang: '陽', animal: '狗', hours: '19:00-21:00' },
+    { index: 11, name: '亥', element: '水', yinYang: '陰', animal: '豬', hours: '21:00-23:00' },
+  ];
+
+  const FIVE_ELEMENTS_INFO: Record<string, { color: string; icon: string }> = {
+    '木': { color: '#2d8a56', icon: '🌳' },
+    '火': { color: '#c44d4d', icon: '🔥' },
+    '土': { color: '#c49a2a', icon: '⛰️' },
+    '金': { color: '#8a8a96', icon: '⚔️' },
+    '水': { color: '#3d7ab8', icon: '💧' },
+  };
+
+  const TEN_GODS_MEANINGS: Record<string, string> = {
+    '比肩': '同類相助，獨立自主',
+    '劫財': '競爭意識，冒險進取',
+    '食神': '才華表現，享受生活',
+    '傷官': '創意突破，反傳統',
+    '偏財': '意外之財，靈活經商',
+    '正財': '穩定收入，勤儉持家',
+    '七殺': '權力魄力，挑戰自我',
+    '正官': '正直守規，領導才能',
+    '偏印': '特殊才華，獨特思維',
+    '正印': '學術智慧，貴人相助',
+    '日主': '自我本體',
+  };
+
+  const NAYIN = [
+    '海中金', '海中金', '爐中火', '爐中火', '大林木', '大林木',
+    '路旁土', '路旁土', '劍鋒金', '劍鋒金', '山頭火', '山頭火',
+    '澗下水', '澗下水', '城頭土', '城頭土', '白蠟金', '白蠟金',
+    '楊柳木', '楊柳木', '泉中水', '泉中水', '屋上土', '屋上土',
+    '霹靂火', '霹靂火', '松柏木', '松柏木', '長流水', '長流水',
+    '砂中金', '砂中金', '山下火', '山下火', '平地木', '平地木',
+    '壁上土', '壁上土', '金箔金', '金箔金', '覆燈火', '覆燈火',
+    '天河水', '天河水', '大驛土', '大驛土', '釵釧金', '釵釧金',
+    '桑柘木', '桑柘木', '大溪水', '大溪水', '沙中土', '沙中土',
+    '天上火', '天上火', '石榴木', '石榴木', '大海水', '大海水',
+  ];
+
+  const SOLAR_TERMS: [number, number][] = [
+    [2, 4], [3, 6], [4, 5], [5, 6], [6, 6], [7, 7],
+    [8, 7], [9, 8], [10, 8], [11, 7], [12, 7], [1, 6],
+  ];
+
+  interface Pillar {
+    stem: typeof HEAVENLY_STEMS[0];
+    branch: typeof EARTHLY_BRANCHES[0];
+    nayin: string;
+  }
+
+  function getLunarMonthIndex(month: number, day: number): number {
+    for (let i = SOLAR_TERMS.length - 1; i >= 0; i--) {
+      const [tm, td] = SOLAR_TERMS[i];
+      if (month > tm || (month === tm && day >= td)) {
+        return (i + 2) % 12;
+      }
+    }
+    return 1;
+  }
+
+  function getYearPillar(year: number, month: number, day: number): Pillar {
+    let adj = year;
+    if (month < 2 || (month === 2 && day < 4)) adj -= 1;
+    const offset = adj - 1984;
+    const si = ((offset % 10) + 10) % 10;
+    const bi = ((offset % 12) + 12) % 12;
+    const ji = ((offset % 60) + 60) % 60;
+    return { stem: HEAVENLY_STEMS[si], branch: EARTHLY_BRANCHES[bi], nayin: NAYIN[ji] };
+  }
+
+  function getMonthPillar(yearStemIdx: number, month: number, day: number): Pillar {
+    const bi = getLunarMonthIndex(month, day);
+    const starts = [2, 4, 6, 8, 0];
+    const yg = yearStemIdx % 5;
+    const fromYin = (bi - 2 + 12) % 12;
+    const si = (starts[yg] + fromYin) % 10;
+    const ji = ((si * 6 + bi) % 60 + 60) % 60;
+    return { stem: HEAVENLY_STEMS[si], branch: EARTHLY_BRANCHES[bi], nayin: NAYIN[ji % 60] };
+  }
+
+  function getDayPillar(year: number, month: number, day: number): Pillar {
+    const a = Math.floor((14 - month) / 12);
+    const y = year + 4800 - a;
+    const m = month + 12 * a - 3;
+    const jdn = day + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+    const diff = jdn - 2451545;
+    const si = ((4 + diff) % 10 + 10) % 10;
+    const bi = ((6 + diff) % 12 + 12) % 12;
+    const ji = ((diff % 60) + 60) % 60;
+    return { stem: HEAVENLY_STEMS[si], branch: EARTHLY_BRANCHES[bi], nayin: NAYIN[((ji + 4 * 6 + 6) % 60 + 60) % 60] };
+  }
+
+  function getHourPillar(dayStemIdx: number, hour: number): Pillar {
+    let bi: number;
+    if (hour >= 23 || hour < 1) bi = 0;
+    else if (hour < 3) bi = 1;
+    else if (hour < 5) bi = 2;
+    else if (hour < 7) bi = 3;
+    else if (hour < 9) bi = 4;
+    else if (hour < 11) bi = 5;
+    else if (hour < 13) bi = 6;
+    else if (hour < 15) bi = 7;
+    else if (hour < 17) bi = 8;
+    else if (hour < 19) bi = 9;
+    else if (hour < 21) bi = 10;
+    else bi = 11;
+    const starts = [0, 2, 4, 6, 8];
+    const dg = dayStemIdx % 5;
+    const si = (starts[dg] + bi) % 10;
+    const ji = ((si * 6 + bi) % 60 + 60) % 60;
+    return { stem: HEAVENLY_STEMS[si], branch: EARTHLY_BRANCHES[bi], nayin: NAYIN[ji % 60] };
+  }
+
+  function getTenGod(dayStem: typeof HEAVENLY_STEMS[0], otherStem: typeof HEAVENLY_STEMS[0]): string {
+    const els = ['木', '火', '土', '金', '水'];
+    const di = els.indexOf(dayStem.element);
+    const oi = els.indexOf(otherStem.element);
+    const same = dayStem.yinYang === otherStem.yinYang;
+    if (di === oi) return same ? '比肩' : '劫財';
+    if (oi === (di + 1) % 5) return same ? '食神' : '傷官';
+    if (oi === (di + 2) % 5) return same ? '偏財' : '正財';
+    if (oi === (di + 3) % 5) return same ? '七殺' : '正官';
+    if (oi === (di + 4) % 5) return same ? '偏印' : '正印';
+    return '比肩';
+  }
+
+  // ===== DOM Interaction =====
+
+  const stepInput = document.getElementById('step-input')!;
+  const stepLoading = document.getElementById('step-loading')!;
+  const stepResult = document.getElementById('step-result')!;
+  const baziForm = document.getElementById('bazi-form') as HTMLFormElement;
+  const recalcBtn = document.getElementById('recalc-btn')!;
+
+  let currentChart: {
+    year: Pillar; month: Pillar; day: Pillar; hour: Pillar;
+    fiveElements: Record<string, number>;
+    tenGods: { pillar: string; god: string }[];
+    dayMaster: typeof HEAVENLY_STEMS[0];
+    animal: string;
+    birthDate: string;
+    birthHour: number;
+    gender: string;
+  } | null = null;
+
+  function showStep(step: 'input' | 'loading' | 'result') {
+    stepInput.classList.toggle('calc-hidden', step !== 'input');
+    stepLoading.classList.toggle('calc-hidden', step !== 'loading');
+    stepResult.classList.toggle('calc-hidden', step !== 'result');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function calculate(dateStr: string, hour: number, gender: string) {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const yp = getYearPillar(y, m, d);
+    const mp = getMonthPillar(yp.stem.index, m, d);
+    const dp = getDayPillar(y, m, d);
+    const hp = getHourPillar(dp.stem.index, hour);
+
+    const pillars = [yp, mp, dp, hp];
+    const fe: Record<string, number> = { '木': 0, '火': 0, '土': 0, '金': 0, '水': 0 };
+    for (const p of pillars) {
+      fe[p.stem.element]++;
+      fe[p.branch.element]++;
+    }
+
+    const pillarNames = ['年柱', '月柱', '日柱', '時柱'];
+    const tg = pillars.map((p, i) => ({
+      pillar: pillarNames[i],
+      god: i === 2 ? '日主' : getTenGod(dp.stem, p.stem),
+    }));
+
+    currentChart = {
+      year: yp, month: mp, day: dp, hour: hp,
+      fiveElements: fe, tenGods: tg,
+      dayMaster: dp.stem,
+      animal: yp.branch.animal,
+      birthDate: dateStr, birthHour: hour, gender,
+    };
+
+    renderResult();
+  }
+
+  function renderResult() {
+    if (!currentChart) return;
+    const c = currentChart;
+
+    // Meta
+    const branchNames = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
+    const hourBranchIdx = c.hour.branch.index;
+    document.getElementById('result-meta')!.innerHTML =
+      `出生日期：${c.birthDate} ｜ 時辰：${branchNames[hourBranchIdx]}時 ｜ 性別：${c.gender === 'male' ? '男' : '女'} ｜ 生肖：${c.animal}`;
+
+    // Pillars
+    const pillarKeys = ['year', 'month', 'day', 'hour'] as const;
+    for (const key of pillarKeys) {
+      const p = c[key];
+      document.getElementById(`stem-${key}`)!.textContent = p.stem.name;
+      document.getElementById(`stem-${key}`)!.style.color = p.stem.color;
+      document.getElementById(`branch-${key}`)!.textContent = p.branch.name;
+      document.getElementById(`nayin-${key}`)!.textContent = p.nayin;
+
+      const godEl = document.getElementById(`god-${key}`)!;
+      if (key === 'day') {
+        godEl.textContent = '日主';
+      } else {
+        const idx = pillarKeys.indexOf(key);
+        godEl.textContent = c.tenGods[idx].god;
+      }
+    }
+
+    // Five Elements chart
+    const maxEl = Math.max(...Object.values(c.fiveElements), 1);
+    const elChart = document.getElementById('elements-chart')!;
+    elChart.innerHTML = '';
+    for (const [el, count] of Object.entries(c.fiveElements)) {
+      const info = FIVE_ELEMENTS_INFO[el];
+      const pct = (count / maxEl) * 100;
+      elChart.innerHTML += `
+        <div class="element-bar-wrap">
+          <div class="element-bar" style="height: ${Math.max(pct, 8)}%; background: ${info.color};">
+            <span class="element-bar-count" style="color: ${info.color}">${count}</span>
+          </div>
+          <span class="element-bar-label">${info.icon} ${el}</span>
+        </div>
+      `;
+    }
+
+    // Elements analysis
+    const strong: string[] = [];
+    const weak: string[] = [];
+    const missing: string[] = [];
+    for (const [el, count] of Object.entries(c.fiveElements)) {
+      if (count === 0) missing.push(el);
+      else if (count >= 3) strong.push(el);
+      else if (count === 1) weak.push(el);
+    }
+    const dayCount = c.fiveElements[c.dayMaster.element];
+    let advice = '';
+    if (dayCount >= 3) advice = `日主 ${c.dayMaster.name}（${c.dayMaster.element}）偏旺，建議以洩耗為用。`;
+    else if (dayCount <= 1) advice = `日主 ${c.dayMaster.name}（${c.dayMaster.element}）偏弱，建議以生扶為用。`;
+    else advice = `日主 ${c.dayMaster.name}（${c.dayMaster.element}）中和，命局較為平衡。`;
+
+    let analysisHtml = `<p>${advice}</p>`;
+    if (strong.length) analysisHtml += `<p>偏旺五行：<strong>${strong.join('、')}</strong></p>`;
+    if (weak.length) analysisHtml += `<p>偏弱五行：<strong>${weak.join('、')}</strong></p>`;
+    if (missing.length) analysisHtml += `<p>缺少五行：<strong>${missing.join('、')}</strong>（可透過後天補運加強）</p>`;
+    document.getElementById('elements-analysis')!.innerHTML = analysisHtml;
+
+    // Ten Gods
+    const tgGrid = document.getElementById('ten-gods-grid')!;
+    tgGrid.innerHTML = '';
+    for (const tg of c.tenGods) {
+      tgGrid.innerHTML += `
+        <div class="ten-god-item">
+          <div class="ten-god-pillar">${tg.pillar}</div>
+          <div class="ten-god-name">${tg.god}</div>
+          <div class="ten-god-meaning">${TEN_GODS_MEANINGS[tg.god] || ''}</div>
+        </div>
+      `;
+    }
+
+    // Day Master
+    const dmBox = document.getElementById('day-master-box')!;
+    dmBox.innerHTML = `
+      <h4>日主：${c.dayMaster.name}（${c.dayMaster.element}・${c.dayMaster.yinYang}）</h4>
+      <p>${advice}</p>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-lighter);">
+        日主代表命主本人，是分析整個命盤的核心。日主的五行強弱決定了用神和忌神的取向，也影響了性格特質和人生走向。
+      </p>
+    `;
+
+    showStep('result');
+  }
+
+  // Form submission
+  baziForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const dateInput = document.getElementById('birth-date') as HTMLInputElement;
+    const hourInput = document.getElementById('birth-hour') as HTMLSelectElement;
+    const genderInput = document.querySelector('input[name="calc-gender"]:checked') as HTMLInputElement;
+
+    if (!dateInput.value || hourInput.value === '') return;
+
+    showStep('loading');
+
+    setTimeout(() => {
+      calculate(dateInput.value, parseInt(hourInput.value), genderInput?.value || 'male');
+    }, 1200);
+  });
+
+  // Recalculate
+  recalcBtn.addEventListener('click', () => {
+    showStep('input');
+  });
+
+  // Auto-fill from URL params
+  const params = new URLSearchParams(window.location.search);
+  const autoDate = params.get('date');
+  const autoHour = params.get('hour');
+  const autoGender = params.get('gender');
+  const autoCalc = params.get('auto');
+
+  if (autoDate) {
+    (document.getElementById('birth-date') as HTMLInputElement).value = autoDate;
+  }
+  if (autoHour !== null) {
+    (document.getElementById('birth-hour') as HTMLSelectElement).value = autoHour;
+  }
+  if (autoGender) {
+    const radio = document.querySelector(`input[name="calc-gender"][value="${autoGender}"]`) as HTMLInputElement;
+    if (radio) radio.checked = true;
+  }
+  if (autoCalc === '1' && autoDate && autoHour !== null) {
+    showStep('loading');
+    setTimeout(() => {
+      calculate(autoDate, parseInt(autoHour), autoGender || 'male');
+    }, 1200);
+  }
+
+  // AI Interpretation
+  const aiForm = document.getElementById('ai-gate-form') as HTMLFormElement;
+  const aiResult = document.getElementById('ai-result')!;
+  const aiLoading = document.getElementById('ai-loading')!;
+  const aiContent = document.getElementById('ai-content')!;
+
+  aiForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!currentChart) return;
+
+    const email = (document.getElementById('ai-email') as HTMLInputElement).value;
+    const question = (document.getElementById('ai-question') as HTMLSelectElement).value;
+
+    if (!email) return;
+
+    aiResult.classList.remove('calc-hidden');
+    aiLoading.classList.remove('calc-hidden');
+    aiContent.textContent = '';
+
+    const c = currentChart;
+
+    try {
+      const res = await fetch('/api/interpret', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          birthDate: c.birthDate,
+          birthHour: c.birthHour,
+          gender: c.gender,
+          yearPillar: `${c.year.stem.name}${c.year.branch.name}`,
+          monthPillar: `${c.month.stem.name}${c.month.branch.name}`,
+          dayPillar: `${c.day.stem.name}${c.day.branch.name}`,
+          hourPillar: `${c.hour.stem.name}${c.hour.branch.name}`,
+          dayMaster: `${c.dayMaster.name}（${c.dayMaster.element}）`,
+          fiveElements: c.fiveElements,
+          tenGods: c.tenGods,
+          question,
+          email,
+        }),
+      });
+
+      const data = await res.json();
+      aiLoading.classList.add('calc-hidden');
+
+      if (res.ok && data.interpretation) {
+        aiContent.textContent = data.interpretation;
+      } else {
+        aiContent.textContent = data.error || 'AI 解讀暫時無法使用，請稍後再試。';
+      }
+    } catch {
+      aiLoading.classList.add('calc-hidden');
+      aiContent.textContent = '網路錯誤，請稍後再試。';
+    }
+  });
+
+  // Consultation form
+  const consultForm = document.getElementById('consult-form') as HTMLFormElement;
+  const consultMsg = document.getElementById('consult-msg')!;
+
+  consultForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = (document.getElementById('consult-name') as HTMLInputElement).value;
+    const email = (document.getElementById('consult-email') as HTMLInputElement).value;
+    const message = (document.getElementById('consult-message') as HTMLTextAreaElement).value;
+
+    const submitBtn = consultForm.querySelector('button') as HTMLButtonElement;
+    submitBtn.disabled = true;
+    submitBtn.textContent = '送出中...';
+
+    try {
+      const res = await fetch('/api/consult', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          baziChart: currentChart ? `${currentChart.year.stem.name}${currentChart.year.branch.name} ${currentChart.month.stem.name}${currentChart.month.branch.name} ${currentChart.day.stem.name}${currentChart.day.branch.name} ${currentChart.hour.stem.name}${currentChart.hour.branch.name}` : '',
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        consultMsg.textContent = '預約已送出！我們會盡快與您聯繫。';
+        consultMsg.style.color = '#16a34a';
+        consultForm.reset();
+      } else {
+        consultMsg.textContent = data.error || '送出失敗，請稍後再試。';
+        consultMsg.style.color = '#dc2626';
+      }
+    } catch {
+      consultMsg.textContent = '網路錯誤，請稍後再試。';
+      consultMsg.style.color = '#dc2626';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '送出諮詢預約';
+    }
+  });
+</script>

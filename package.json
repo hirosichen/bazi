@@ -1,0 +1,24 @@
+{
+  "name": "starkami-bazi",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@ai-sdk/xai": "^3.0.67",
+    "@astrojs/cloudflare": "^12.6.12",
+    "@astrojs/sitemap": "^3.7.0",
+    "@fontsource-variable/noto-sans-tc": "^5.2.10",
+    "@fontsource/noto-serif-tc": "^5.2.9",
+    "ai": "^6.0.116",
+    "resend": "^6.9.3",
+    "astro": "^5.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "typescript": "^5.9.3"
+  }
+}

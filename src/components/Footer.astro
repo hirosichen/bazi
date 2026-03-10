@@ -1,0 +1,83 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <!-- CTA banner -->
+  <div class="footer-cta">
+    <div class="section-inner">
+      <h2>好奇你的八字命盤寫了什麼？</h2>
+      <p>千年命理智慧，一次排盤即可開啟。免費體驗線上排盤與 AI 分析。</p>
+      <div>
+        <a href="/tools/bazi-chart" class="btn btn--lg" style="background:var(--white);color:var(--jade);border-color:var(--white);margin:0 var(--space-sm);">立即排盤</a>
+        <a href="/tools/bazi-chart#ai" class="btn btn--lg" style="background:transparent;color:var(--white);border-color:rgba(255,255,255,0.4);margin:0 var(--space-sm);">AI 命理分析</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer body -->
+  <div class="footer-inner">
+    <div class="footer-top">
+      <!-- Brand column -->
+      <div class="footer-brand">
+        <a href="/" class="nav-brand">
+          <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="18" cy="18" r="16" stroke="#d4384a" stroke-width="2.5" fill="none" />
+            <circle cx="18" cy="18" r="13.5" stroke="#d4384a" stroke-width="0.8" fill="none" />
+            <path d="M14 11 L11 25" stroke="#d4384a" stroke-width="2.2" stroke-linecap="round" />
+            <path d="M22 11 L25 25" stroke="#d4384a" stroke-width="2.2" stroke-linecap="round" />
+            <line x1="12" y1="16" x2="24" y2="16" stroke="#d4a017" stroke-width="1.2" stroke-linecap="round" />
+            <line x1="13" y1="20" x2="23" y2="20" stroke="#d4a017" stroke-width="1.2" stroke-linecap="round" />
+          </svg>
+          <span>八字研究所</span>
+        </a>
+        <p>免費排盤・AI 分析・命理智慧
+致力於將千年八字命理智慧帶入現代生活。</p>
+
+        <div class="footer-newsletter">
+          <h4>訂閱每週命理洞見</h4>
+          <form class="newsletter-form" action="/api/subscribe" method="POST">
+            <input type="email" name="email" placeholder="你的電子信箱" required autocomplete="email" />
+            <button type="submit">訂閱</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Nav column -->
+      <div class="footer-col">
+        <h4>導覽</h4>
+        <a href="/">首頁</a>
+        <a href="/about">關於我們</a>
+        <a href="/articles">所有文章</a>
+        <a href="/tools">所有工具</a>
+      </div>
+
+      <!-- Articles column -->
+      <div class="footer-col">
+        <h4>文章分類</h4>
+        <a href="/articles/category/basics">基礎入門</a>
+        <a href="/articles/category/stems-branches">天干地支</a>
+        <a href="/articles/category/five-elements">五行學說</a>
+        <a href="/articles/category/ten-gods">十神解析</a>
+        <a href="/articles/category/practice">命理實戰</a>
+      </div>
+
+      <!-- Tools column -->
+      <div class="footer-col">
+        <h4>命理工具</h4>
+        <a href="/tools/bazi-chart">八字排盤</a>
+        <a href="/tools/compatibility">合盤分析</a>
+        <a href="/tools/yearly-fortune">流年運勢</a>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <span>&copy; {currentYear} 八字研究所. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="/privacy">隱私政策</a>
+        <a href="/terms">使用條款</a>
+      </div>
+    </div>
+  </div>
+</footer>

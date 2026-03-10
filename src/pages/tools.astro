@@ -1,0 +1,126 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="命理工具 | 八字研究所"
+  description="免費線上八字排盤、合盤分析、流年運勢等命理工具，即時計算你的四柱八字命盤。"
+  activePage="tools"
+>
+  <!-- Hero -->
+  <section class="tools-hero">
+    <div class="container">
+      <span class="overline">命理工具</span>
+      <h1>命理工具</h1>
+      <p class="tools-hero-desc">探索我們提供的各種命理分析工具，從基礎排盤到進階運勢分析，一應俱全。</p>
+    </div>
+  </section>
+
+  <!-- Tools Grid -->
+  <section class="section">
+    <div class="container">
+      <div class="grid-3">
+        <div class="card tool-card fade-up">
+          <div class="card-icon">🏛️</div>
+          <h3>八字排盤</h3>
+          <p>輸入出生年月日時，即時計算你的四柱八字命盤。包含天干地支、五行分布、十神分析、納音等完整資訊。</p>
+          <ul class="tool-features">
+            <li>四柱天干地支排盤</li>
+            <li>五行分布圖表</li>
+            <li>十神關係解析</li>
+            <li>日主強弱分析</li>
+          </ul>
+          <a href="/tools/chart-calculator" class="btn btn-primary" style="margin-top: 1.5rem; width: 100%;">開始排盤</a>
+        </div>
+
+        <div class="card tool-card fade-up">
+          <div class="card-icon">💑</div>
+          <h3>合盤分析</h3>
+          <p>比較兩個人的八字命盤，分析彼此的五行互補、十神關係，了解兩人之間的契合度與相處建議。</p>
+          <ul class="tool-features">
+            <li>雙人命盤對比</li>
+            <li>五行互補分析</li>
+            <li>感情相合度評分</li>
+            <li>相處建議</li>
+          </ul>
+          <span class="btn btn-outline tool-coming" style="margin-top: 1.5rem; width: 100%; opacity: 0.6; pointer-events: none;">即將推出</span>
+        </div>
+
+        <div class="card tool-card fade-up">
+          <div class="card-icon">📅</div>
+          <h3>流年運勢</h3>
+          <p>根據你的命盤，分析每年的運勢走向。了解大運與流年天干地支對命盤的影響，掌握人生節奏。</p>
+          <ul class="tool-features">
+            <li>年度運勢分析</li>
+            <li>大運走勢圖</li>
+            <li>流年吉凶提示</li>
+            <li>開運建議</li>
+          </ul>
+          <span class="btn btn-outline tool-coming" style="margin-top: 1.5rem; width: 100%; opacity: 0.6; pointer-events: none;">即將推出</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container fade-up">
+      <h2>從排盤開始你的命理旅程</h2>
+      <p>只需輸入出生資料，幾秒鐘即可獲得完整的四柱八字命盤分析。</p>
+      <a href="/tools/chart-calculator" class="btn btn-white btn-lg">立即免費排盤</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .tools-hero {
+    padding: 10rem 0 4rem;
+    background: linear-gradient(135deg, var(--ink), #2c0a14);
+    color: #fff;
+    text-align: center;
+  }
+
+  .tools-hero h1 {
+    color: #fff;
+    margin: 1rem 0;
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .tools-hero-desc {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .tool-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tool-card p {
+    flex-grow: 0;
+  }
+
+  .tool-features {
+    list-style: none;
+    margin-top: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .tool-features li {
+    padding: 0.4rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  .tool-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--crimson);
+    font-weight: 700;
+  }
+</style>

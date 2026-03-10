@@ -1,0 +1,188 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = '五行相生相剋的奧秘';
+const description = '探索五行（金木水火土）的相生相剋關係，理解五行在八字命理中的核心作用，學會分析命盤中的五行平衡。';
+const publishedTime = '2025-02-01';
+const category = '五行學說';
+---
+
+<Base
+  title={`${title} | 八字研究所`}
+  description={description}
+  ogType="article"
+  publishedTime={publishedTime}
+  articleSection={category}
+  articleTags={['五行', '相生', '相剋', '金木水火土', '八字']}
+  activePage="articles"
+>
+  <section class="article-hero" style="margin-top: 64px;">
+    <div class="article-hero-bg" style="background: linear-gradient(135deg, #0a2e1a 0%, #1a1a2e 100%);"></div>
+    <div class="article-hero-content">
+      <span class="article-card-category" style="background: var(--crimson); color: #fff;">{category}</span>
+      <h1>{title}</h1>
+      <div class="article-meta">
+        <span>{publishedTime}</span>
+        <span>10 分鐘閱讀</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="article-body">
+    <p>五行學說是中國古代哲學的基石之一，也是八字命理的核心理論。金、木、水、火、土這五種元素並非指實際的物質，而是對自然界萬物運行規律的抽象概括。理解五行的相生相剋關係，是學習八字命理的必經之路。</p>
+
+    <h2>五行的基本屬性</h2>
+
+    <p>每一種五行都有其獨特的特性和象徵意義：</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>五行</th>
+          <th>特性</th>
+          <th>方位</th>
+          <th>季節</th>
+          <th>顏色</th>
+          <th>器官</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>木</td>
+          <td>生長、向上、條達</td>
+          <td>東</td>
+          <td>春</td>
+          <td>青、綠</td>
+          <td>肝、膽</td>
+        </tr>
+        <tr>
+          <td>火</td>
+          <td>炎熱、向上、光明</td>
+          <td>南</td>
+          <td>夏</td>
+          <td>紅、紫</td>
+          <td>心、小腸</td>
+        </tr>
+        <tr>
+          <td>土</td>
+          <td>承載、化育、厚重</td>
+          <td>中</td>
+          <td>四季交替</td>
+          <td>黃、棕</td>
+          <td>脾、胃</td>
+        </tr>
+        <tr>
+          <td>金</td>
+          <td>收斂、肅殺、堅硬</td>
+          <td>西</td>
+          <td>秋</td>
+          <td>白、銀</td>
+          <td>肺、大腸</td>
+        </tr>
+        <tr>
+          <td>水</td>
+          <td>寒涼、向下、潤澤</td>
+          <td>北</td>
+          <td>冬</td>
+          <td>黑、藍</td>
+          <td>腎、膀胱</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>五行相生</h2>
+
+    <p>相生指的是一種五行能夠滋養、促進另一種五行的生長。五行相生的順序形成一個循環：</p>
+
+    <ul>
+      <li><strong>木生火</strong>：木材燃燒產生火焰。在命理中，木能滋養火的力量。</li>
+      <li><strong>火生土</strong>：火燃燒後化為灰燼，歸於土。火能增強土的力量。</li>
+      <li><strong>土生金</strong>：金屬礦石蘊藏於土中。土能孕育金的力量。</li>
+      <li><strong>金生水</strong>：金屬冷卻凝結水珠（古人觀察）。金能產生水的力量。</li>
+      <li><strong>水生木</strong>：樹木需要水分才能生長。水能滋養木的力量。</li>
+    </ul>
+
+    <blockquote>
+      在八字命理中，相生關係代表著支持和助力。如果命盤中日主偏弱，找到能夠生扶日主五行的元素，就是找到了「用神」。
+    </blockquote>
+
+    <h2>五行相剋</h2>
+
+    <p>相剋指的是一種五行能夠抑制、制約另一種五行。五行相剋的順序也形成一個循環：</p>
+
+    <ul>
+      <li><strong>木剋土</strong>：樹根穿透土壤，破壞土的結構。</li>
+      <li><strong>土剋水</strong>：堤壩（土）能阻擋水的流動。</li>
+      <li><strong>水剋火</strong>：水能澆滅火焰。</li>
+      <li><strong>火剋金</strong>：烈火能熔化金屬。</li>
+      <li><strong>金剋木</strong>：斧頭（金）能砍伐樹木。</li>
+    </ul>
+
+    <p>相剋並不一定是壞事。適度的剋制能夠維持平衡，防止某一五行過度膨脹。但如果剋制過度，則會造成被剋的一方力量嚴重不足，從而影響整體平衡。</p>
+
+    <h2>五行在八字中的應用</h2>
+
+    <h3>判斷日主強弱</h3>
+
+    <p>分析八字的第一步是判斷日主的強弱。日主的強弱取決於以下因素：</p>
+
+    <ol>
+      <li><strong>得令</strong>：日主的五行在當月是否處於旺相的季節。例如木日主生於春天（寅卯月），就是得令。</li>
+      <li><strong>得地</strong>：四柱地支中是否有與日主同類或生日主的五行。</li>
+      <li><strong>得助</strong>：四柱天干中是否有與日主同類或生日主的五行。</li>
+    </ol>
+
+    <h3>確定用神</h3>
+
+    <p>用神是命盤中最需要的五行元素：</p>
+
+    <ul>
+      <li>日主偏旺時，用神通常是剋制日主或洩耗日主力量的五行。</li>
+      <li>日主偏弱時，用神通常是生扶日主或與日主同類的五行。</li>
+    </ul>
+
+    <p>例如，一個甲木日主，如果命盤中木和水的力量很強（木旺），那麼用神可能是火（洩木之氣）、土（讓木有所作為）或金（適度修剪）。</p>
+
+    <h3>五行與健康</h3>
+
+    <p>五行的偏缺也反映在身體健康上。每一種五行都對應不同的器官系統：</p>
+
+    <ul>
+      <li>命盤中<strong>木</strong>偏弱或缺少：需注意肝膽和眼睛的保養。</li>
+      <li>命盤中<strong>火</strong>偏弱或缺少：需注意心血管和循環系統。</li>
+      <li>命盤中<strong>土</strong>偏弱或缺少：需注意脾胃消化功能。</li>
+      <li>命盤中<strong>金</strong>偏弱或缺少：需注意呼吸系統和皮膚。</li>
+      <li>命盤中<strong>水</strong>偏弱或缺少：需注意腎臟和泌尿系統。</li>
+    </ul>
+
+    <h2>五行的補救方法</h2>
+
+    <p>當命盤中某一五行偏弱或缺少時，可以透過後天的方式來補強：</p>
+
+    <ul>
+      <li><strong>顏色</strong>：在日常穿著或居家佈置中使用對應五行的顏色。</li>
+      <li><strong>方位</strong>：選擇有利的方位居住或工作（如木對應東方）。</li>
+      <li><strong>飲食</strong>：多攝取對應五行屬性的食物。</li>
+      <li><strong>職業</strong>：選擇與所需五行相關的行業（如水行業包括物流、漁業、旅遊等）。</li>
+      <li><strong>數字</strong>：使用對應五行的數字（木：3、8；火：2、7；土：5、0；金：4、9；水：1、6）。</li>
+    </ul>
+
+    <h2>超越簡單的生剋</h2>
+
+    <p>在實際的八字分析中，五行的關係遠比簡單的相生相剋複雜。還需要考慮：</p>
+
+    <ul>
+      <li><strong>五行的旺衰</strong>：同樣是剋，強金剋弱木與弱金剋強木的效果完全不同。</li>
+      <li><strong>通關</strong>：當兩個五行相剋時，中間加入能調和的五行，就能化解衝突。例如金剋木，中間加入水（金生水，水生木），就能通關。</li>
+      <li><strong>反剋</strong>：如果被剋的一方力量遠強於剋制的一方，反而會出現反剋的現象。</li>
+    </ul>
+
+    <p>五行學說博大精深，本文僅是入門介紹。隨著學習的深入，你會發現五行的變化無窮，正如自然界的運行規律一樣，充滿了智慧與哲理。</p>
+
+    <div class="article-cta">
+      <h3>查看你的五行分布</h3>
+      <p>使用免費排盤工具，即時查看你的命盤五行分布圖，了解自己的五行特性。</p>
+      <a href="/tools/chart-calculator" class="btn btn-primary">免費排盤</a>
+    </div>
+  </article>
+</Base>

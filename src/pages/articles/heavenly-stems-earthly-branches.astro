@@ -1,0 +1,215 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = '天干地支完全指南：十天干與十二地支';
+const description = '深入認識十天干與十二地支的五行屬性、陰陽分類及實際應用，掌握八字命理的基礎元素。';
+const publishedTime = '2025-01-22';
+const category = '天干地支';
+---
+
+<Base
+  title={`${title} | 八字研究所`}
+  description={description}
+  ogType="article"
+  publishedTime={publishedTime}
+  articleSection={category}
+  articleTags={['天干', '地支', '十天干', '十二地支', '五行', '陰陽']}
+  activePage="articles"
+>
+  <section class="article-hero" style="margin-top: 64px;">
+    <div class="article-hero-bg" style="background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);"></div>
+    <div class="article-hero-content">
+      <span class="article-card-category" style="background: var(--crimson); color: #fff;">{category}</span>
+      <h1>{title}</h1>
+      <div class="article-meta">
+        <span>{publishedTime}</span>
+        <span>12 分鐘閱讀</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="article-body">
+    <p>天干地支（簡稱「干支」）是中國古代的紀年系統，也是八字命理的基礎語言。十天干與十二地支的組合，構成了六十甲子的循環，用以標記時間的流轉。要學好八字命理，首先必須深入了解天干與地支的含義和特性。</p>
+
+    <h2>十天干</h2>
+
+    <p>天干共有十個，依序為：<strong>甲、乙、丙、丁、戊、己、庚、辛、壬、癸</strong>。每一個天干都有對應的五行屬性和陰陽屬性。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>天干</th>
+          <th>五行</th>
+          <th>陰陽</th>
+          <th>象徵</th>
+          <th>性格特質</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>甲</td>
+          <td>木</td>
+          <td>陽</td>
+          <td>大樹、棟梁</td>
+          <td>正直剛毅、有領導力、堅持己見</td>
+        </tr>
+        <tr>
+          <td>乙</td>
+          <td>木</td>
+          <td>陰</td>
+          <td>花草、藤蔓</td>
+          <td>柔韌靈活、溫和包容、善於適應</td>
+        </tr>
+        <tr>
+          <td>丙</td>
+          <td>火</td>
+          <td>陽</td>
+          <td>太陽、烈火</td>
+          <td>熱情開朗、光明磊落、影響力強</td>
+        </tr>
+        <tr>
+          <td>丁</td>
+          <td>火</td>
+          <td>陰</td>
+          <td>燭光、星火</td>
+          <td>細膩敏感、文雅內斂、富有才華</td>
+        </tr>
+        <tr>
+          <td>戊</td>
+          <td>土</td>
+          <td>陽</td>
+          <td>高山、大地</td>
+          <td>穩重厚實、包容力強、值得信賴</td>
+        </tr>
+        <tr>
+          <td>己</td>
+          <td>土</td>
+          <td>陰</td>
+          <td>田園、沃土</td>
+          <td>務實謹慎、善於規劃、細心周到</td>
+        </tr>
+        <tr>
+          <td>庚</td>
+          <td>金</td>
+          <td>陽</td>
+          <td>刀劍、礦石</td>
+          <td>果斷剛強、重義氣、有魄力</td>
+        </tr>
+        <tr>
+          <td>辛</td>
+          <td>金</td>
+          <td>陰</td>
+          <td>珠玉、首飾</td>
+          <td>精緻優雅、聰慧靈敏、追求完美</td>
+        </tr>
+        <tr>
+          <td>壬</td>
+          <td>水</td>
+          <td>陽</td>
+          <td>大海、江河</td>
+          <td>胸懷寬廣、足智多謀、不拘小節</td>
+        </tr>
+        <tr>
+          <td>癸</td>
+          <td>水</td>
+          <td>陰</td>
+          <td>雨露、泉水</td>
+          <td>內斂深沉、直覺敏銳、善解人意</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>十二地支</h2>
+
+    <p>地支共有十二個，依序為：<strong>子、丑、寅、卯、辰、巳、午、未、申、酉、戌、亥</strong>。每一個地支都對應一個生肖動物，同時也對應一天中的兩個小時（一個時辰）。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>地支</th>
+          <th>五行</th>
+          <th>陰陽</th>
+          <th>生肖</th>
+          <th>時辰</th>
+          <th>對應月份</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>子</td><td>水</td><td>陽</td><td>鼠</td><td>23:00–01:00</td><td>農曆十一月</td></tr>
+        <tr><td>丑</td><td>土</td><td>陰</td><td>牛</td><td>01:00–03:00</td><td>農曆十二月</td></tr>
+        <tr><td>寅</td><td>木</td><td>陽</td><td>虎</td><td>03:00–05:00</td><td>農曆一月</td></tr>
+        <tr><td>卯</td><td>木</td><td>陰</td><td>兔</td><td>05:00–07:00</td><td>農曆二月</td></tr>
+        <tr><td>辰</td><td>土</td><td>陽</td><td>龍</td><td>07:00–09:00</td><td>農曆三月</td></tr>
+        <tr><td>巳</td><td>火</td><td>陰</td><td>蛇</td><td>09:00–11:00</td><td>農曆四月</td></tr>
+        <tr><td>午</td><td>火</td><td>陽</td><td>馬</td><td>11:00–13:00</td><td>農曆五月</td></tr>
+        <tr><td>未</td><td>土</td><td>陰</td><td>羊</td><td>13:00–15:00</td><td>農曆六月</td></tr>
+        <tr><td>申</td><td>金</td><td>陽</td><td>猴</td><td>15:00–17:00</td><td>農曆七月</td></tr>
+        <tr><td>酉</td><td>金</td><td>陰</td><td>雞</td><td>17:00–19:00</td><td>農曆八月</td></tr>
+        <tr><td>戌</td><td>土</td><td>陽</td><td>狗</td><td>19:00–21:00</td><td>農曆九月</td></tr>
+        <tr><td>亥</td><td>水</td><td>陰</td><td>豬</td><td>21:00–23:00</td><td>農曆十月</td></tr>
+      </tbody>
+    </table>
+
+    <h2>天干地支的配對規則</h2>
+
+    <p>天干與地支按照固定的規則相互配對，形成六十組不同的干支組合，稱為「六十甲子」。配對規則是：陽干配陽支，陰干配陰支。</p>
+
+    <p>例如：甲（陽）只能配子（陽）、寅（陽）、辰（陽）等陽支；乙（陰）只能配丑（陰）、卯（陰）、巳（陰）等陰支。</p>
+
+    <p>六十甲子的完整排列為：甲子、乙丑、丙寅、丁卯、戊辰、己巳、庚午、辛未、壬申、癸酉、甲戌、乙亥……依此類推，循環往復。每六十年（或六十天、六十月）為一個完整的週期。</p>
+
+    <h2>地支的藏干</h2>
+
+    <p>每一個地支內部都「藏」有一到三個天干，稱為「地支藏干」或「人元」。藏干的概念在八字分析中非常重要，因為它揭示了地支內部隱含的五行力量。</p>
+
+    <ul>
+      <li><strong>子</strong>：藏癸水</li>
+      <li><strong>丑</strong>：藏己土、癸水、辛金</li>
+      <li><strong>寅</strong>：藏甲木、丙火、戊土</li>
+      <li><strong>卯</strong>：藏乙木</li>
+      <li><strong>辰</strong>：藏戊土、乙木、癸水</li>
+      <li><strong>巳</strong>：藏丙火、庚金、戊土</li>
+      <li><strong>午</strong>：藏丁火、己土</li>
+      <li><strong>未</strong>：藏己土、丁火、乙木</li>
+      <li><strong>申</strong>：藏庚金、壬水、戊土</li>
+      <li><strong>酉</strong>：藏辛金</li>
+      <li><strong>戌</strong>：藏戊土、辛金、丁火</li>
+      <li><strong>亥</strong>：藏壬水、甲木</li>
+    </ul>
+
+    <h2>地支之間的關係</h2>
+
+    <p>地支之間存在多種特殊關係，這些關係在八字分析中具有重要意義：</p>
+
+    <h3>六合</h3>
+    <p>子丑合、寅亥合、卯戌合、辰酉合、巳申合、午未合。六合代表兩個地支之間的和諧關係，在命盤中出現六合通常代表助力和人緣。</p>
+
+    <h3>三合</h3>
+    <p>申子辰合水局、亥卯未合木局、寅午戌合火局、巳酉丑合金局。三合代表三個地支結合成一個強大的五行力量。</p>
+
+    <h3>六沖</h3>
+    <p>子午沖、丑未沖、寅申沖、卯酉沖、辰戌沖、巳亥沖。六沖代表衝突和變動，在命盤中出現通常暗示不穩定因素。</p>
+
+    <h3>三刑</h3>
+    <p>寅巳申為無恩之刑、丑戌未為恃勢之刑、子卯為無禮之刑。三刑代表壓力和磨練。</p>
+
+    <h2>如何記憶天干地支？</h2>
+
+    <p>初學者可以透過以下方法來記憶天干地支：</p>
+
+    <ol>
+      <li><strong>五行分組記憶</strong>：把天干按照五行分組（甲乙木、丙丁火、戊己土、庚辛金、壬癸水），每組一陽一陰。</li>
+      <li><strong>生肖聯想</strong>：地支與十二生肖一一對應，可以用生肖來輔助記憶。</li>
+      <li><strong>時辰對照</strong>：把地支與一天中的時辰對照（子時是晚上11點到凌晨1點），加深印象。</li>
+      <li><strong>實際練習</strong>：使用<a href="/tools/chart-calculator">八字排盤工具</a>，排出不同人的命盤來練習辨識。</li>
+    </ol>
+
+    <p>掌握了天干地支的基本知識，你就擁有了閱讀八字命盤的鑰匙。下一步，可以學習<a href="/articles/five-elements">五行相生相剋的奧秘</a>，進一步理解命盤中五行的互動關係。</p>
+
+    <div class="article-cta">
+      <h3>用你的命盤練習</h3>
+      <p>立即排出你的八字命盤，在實際命盤中辨識天干地支的五行屬性。</p>
+      <a href="/tools/chart-calculator" class="btn btn-primary">免費排盤</a>
+    </div>
+  </article>
+</Base>

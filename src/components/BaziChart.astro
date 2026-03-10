@@ -1,0 +1,133 @@
+---
+export interface Props {
+  yearStem: string;
+  yearBranch: string;
+  monthStem: string;
+  monthBranch: string;
+  dayStem: string;
+  dayBranch: string;
+  hourStem: string;
+  hourBranch: string;
+}
+
+const {
+  yearStem,
+  yearBranch,
+  monthStem,
+  monthBranch,
+  dayStem,
+  dayBranch,
+  hourStem,
+  hourBranch,
+} = Astro.props;
+
+/**
+ * Map a Heavenly Stem (天干) to its Five Element.
+ */
+function stemElement(stem: string): { element: string; label: string } {
+  const map: Record<string, { element: string; label: string }> = {
+    '甲': { element: 'wood',  label: '木' },
+    '乙': { element: 'wood',  label: '木' },
+    '丙': { element: 'fire',  label: '火' },
+    '丁': { element: 'fire',  label: '火' },
+    '戊': { element: 'earth', label: '土' },
+    '己': { element: 'earth', label: '土' },
+    '庚': { element: 'metal', label: '金' },
+    '辛': { element: 'metal', label: '金' },
+    '壬': { element: 'water', label: '水' },
+    '癸': { element: 'water', label: '水' },
+  };
+  return map[stem] || { element: 'earth', label: '土' };
+}
+
+/**
+ * Map an Earthly Branch (地支) to its Five Element.
+ */
+function branchElement(branch: string): { element: string; label: string } {
+  const map: Record<string, { element: string; label: string }> = {
+    '子': { element: 'water', label: '水' },
+    '丑': { element: 'earth', label: '土' },
+    '寅': { element: 'wood',  label: '木' },
+    '卯': { element: 'wood',  label: '木' },
+    '辰': { element: 'earth', label: '土' },
+    '巳': { element: 'fire',  label: '火' },
+    '午': { element: 'fire',  label: '火' },
+    '未': { element: 'earth', label: '土' },
+    '申': { element: 'metal', label: '金' },
+    '酉': { element: 'metal', label: '金' },
+    '戌': { element: 'earth', label: '土' },
+    '亥': { element: 'water', label: '水' },
+  };
+  return map[branch] || { element: 'earth', label: '土' };
+}
+
+/**
+ * Derive the Ten God (十神) relationship of a stem relative to the Day Master.
+ * Simplified lookup — returns a label string.
+ */
+function tenGod(stem: string, dayMaster: string): string {
+  if (stem === dayMaster) return '比肩';
+
+  const yinYang: Record<string, number> = {
+    '甲': 1, '丙': 1, '戊': 1, '庚': 1, '壬': 1,
+    '乙': 0, '丁': 0, '己': 0, '辛': 0, '癸': 0,
+  };
+  const elementIdx: Record<string, number> = {
+    '甲': 0, '乙': 0,
+    '丙': 1, '丁': 1,
+    '戊': 2, '己': 2,
+    '庚': 3, '辛': 3,
+    '壬': 4, '癸': 4,
+  };
+
+  const dmEl = elementIdx[dayMaster] ?? 0;
+  const sEl = elementIdx[stem] ?? 0;
+  const samePolarity = yinYang[stem] === yinYang[dayMaster];
+
+  // Five-element cycle distance (generating order: 木0→火1→土2→金3→水4)
+  const diff = ((sEl - dmEl) + 5) % 5;
+
+  const table: Record<number, [string, string]> = {
+    0: ['比肩', '劫財'],   // same element
+    1: ['食神', '傷官'],   // I generate
+    2: ['偏財', '正財'],   // I overcome
+    3: ['七殺', '正官'],   // overcomes me
+    4: ['偏印', '正印'],   // generates me
+  };
+
+  const pair = table[diff];
+  if (!pair) return '';
+  return samePolarity ? pair[0] : pair[1];
+}
+
+const pillars = [
+  { label: '年柱', stem: yearStem,  branch: yearBranch,  isDay: false },
+  { label: '月柱', stem: monthStem, branch: monthBranch, isDay: false },
+  { label: '日柱', stem: dayStem,   branch: dayBranch,   isDay: true  },
+  { label: '時柱', stem: hourStem,  branch: hourBranch,  isDay: false },
+];
+---
+
+<div class="bazi-chart" role="table" aria-label="四柱八字命盤">
+  {pillars.map((p) => {
+    const sEl = stemElement(p.stem);
+    const bEl = branchElement(p.branch);
+    const god = p.isDay ? '日主' : tenGod(p.stem, dayStem);
+
+    return (
+      <div class={`pillar-card ${p.isDay ? 'pillar-card--day' : ''}`} role="cell">
+        <div class="pillar-label">{p.label}</div>
+        <div class="pillar-tengod">{god}</div>
+        <div class={`pillar-stem`} title={`${p.stem} — ${sEl.label}`}>
+          {p.stem}
+        </div>
+        <div class={`pillar-branch`} title={`${p.branch} — ${bEl.label}`}>
+          {p.branch}
+        </div>
+        <div class="pillar-element">
+          <span class={`element-badge element-badge--${sEl.element}`}>{sEl.label}</span>
+        </div>
+      </div>
+    );
+  })}
+</div>

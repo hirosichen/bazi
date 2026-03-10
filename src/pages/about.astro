@@ -1,0 +1,191 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="關於八字研究所 | StarKami"
+  description="八字研究所致力於傳承東方命理智慧，結合現代 AI 科技，為每個人提供專業、免費的八字命理分析服務。"
+  activePage="about"
+>
+  <!-- Hero -->
+  <section class="about-hero">
+    <div class="container">
+      <span class="overline">關於我們</span>
+      <h1>關於八字研究所</h1>
+      <p class="about-hero-desc">
+        我們相信，流傳數千年的八字命理不應該只是少數人的專利。八字研究所的使命，是讓每個人都能輕鬆接觸這門古老的智慧，透過現代科技的力量，重新認識自己、理解人生。
+      </p>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="overline">核心理念</span>
+        <h2>我們的四大堅持</h2>
+      </div>
+      <div class="grid-4">
+        <div class="card fade-up">
+          <div class="card-icon">📜</div>
+          <h3>傳統智慧</h3>
+          <p>忠於千年命理傳統，嚴謹考證天干地支、五行生剋、十神體系，確保每一個計算結果都經得起檢驗。</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-icon">🤖</div>
+          <h3>AI 科技</h3>
+          <p>運用最新的人工智慧技術，將複雜的命盤資訊轉化為易懂的個人化解讀，讓命理知識不再艱澀難懂。</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-icon">🌐</div>
+          <h3>免費開放</h3>
+          <p>所有排盤工具和學習資源完全免費開放。我們相信，讓更多人接觸命理智慧，能為社會帶來正面的影響。</p>
+        </div>
+        <div class="card fade-up">
+          <div class="card-icon">🎯</div>
+          <h3>專業深度</h3>
+          <p>從基礎的四柱排盤到進階的大運分析，我們追求每一個功能的專業深度，讓初學者和專業人士都能受益。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Spirit -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="about-team fade-up">
+        <div class="about-team-content">
+          <span class="overline">團隊精神</span>
+          <h2>融合古今的命理探索者</h2>
+          <p>八字研究所的團隊由命理愛好者與科技工作者共同組成。我們深知，命理不是迷信，而是一套系統化的人生觀察框架。透過嚴謹的學術態度和先進的技術手段，我們希望為這門古老的學問注入新的生命力。</p>
+          <p>每一行程式碼、每一篇文章，都承載著我們對傳統文化的敬意和對現代使用者的關懷。我們不斷學習、不斷改進，只為給你帶來更好的命理體驗。</p>
+        </div>
+        <div class="about-team-visual">
+          <div class="about-symbol">☯</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="overline">聯絡我們</span>
+        <h2>有任何問題嗎？</h2>
+        <p>無論是合作邀約、功能建議還是命理討論，我們都很樂意聽到你的聲音。</p>
+      </div>
+      <div class="about-contact fade-up">
+        <div class="about-contact-card">
+          <h3>電子郵件</h3>
+          <p><a href="mailto:contact@starkami.com">contact@starkami.com</a></p>
+        </div>
+        <div class="about-contact-card">
+          <h3>網站</h3>
+          <p><a href="https://starkami.com">starkami.com</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container fade-up">
+      <h2>準備好探索你的命盤了嗎？</h2>
+      <p>免費、即時、專業的八字排盤，只需三步即可完成。</p>
+      <a href="/tools/chart-calculator" class="btn btn-white btn-lg">立即免費排盤</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .about-hero {
+    padding: 10rem 0 4rem;
+    background: linear-gradient(135deg, var(--ink), #2c0a14);
+    color: #fff;
+    text-align: center;
+  }
+
+  .about-hero h1 {
+    color: #fff;
+    margin: 1rem 0;
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .about-hero-desc {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.15rem;
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .about-team {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-team-content h2 {
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  .about-team-content p {
+    color: var(--text-light);
+    line-height: 1.85;
+  }
+
+  .about-team-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-symbol {
+    font-size: 10rem;
+    opacity: 0.15;
+    color: var(--crimson);
+    line-height: 1;
+  }
+
+  .about-contact {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .about-contact-card {
+    text-align: center;
+    padding: 2rem;
+    background: var(--bg-alt);
+    border-radius: var(--radius-md);
+  }
+
+  .about-contact-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .about-contact-card a {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .about-team {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .about-team-visual {
+      order: -1;
+    }
+    .about-symbol {
+      font-size: 6rem;
+    }
+    .about-contact {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

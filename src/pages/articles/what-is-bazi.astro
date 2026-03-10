@@ -1,0 +1,135 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = '八字入門：什麼是四柱八字？';
+const description = '從零開始了解四柱八字的基本概念，認識天干地支與八字命盤的結構，踏出命理學習的第一步。';
+const publishedTime = '2025-01-15';
+const category = '基礎入門';
+---
+
+<Base
+  title={`${title} | 八字研究所`}
+  description={description}
+  ogType="article"
+  publishedTime={publishedTime}
+  articleSection={category}
+  articleTags={['八字', '四柱', '入門', '天干地支', '命理']}
+  activePage="articles"
+>
+  <section class="article-hero" style="margin-top: 64px;">
+    <div class="article-hero-bg" style="background: linear-gradient(135deg, #1a1a2e 0%, #2c0a14 100%);"></div>
+    <div class="article-hero-content">
+      <span class="article-card-category" style="background: var(--crimson); color: #fff;">{category}</span>
+      <h1>{title}</h1>
+      <div class="article-meta">
+        <span>{publishedTime}</span>
+        <span>10 分鐘閱讀</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="article-body">
+    <p>八字，又稱「四柱八字」或「生辰八字」，是中國傳統命理學中最核心的推命方法之一。它以一個人出生的年、月、日、時為基礎，透過天干地支的組合，構建出一張獨特的命盤，用以分析一個人的性格、運勢與人生走向。</p>
+
+    <h2>什麼是四柱？</h2>
+
+    <p>所謂「四柱」，指的是出生年、月、日、時這四個時間節點。每一柱由一個「天干」和一個「地支」組成，合稱為一組「干支」。四柱共有八個字（四天干加四地支），因此被稱為「八字」。</p>
+
+    <ul>
+      <li><strong>年柱</strong>：代表祖輩、家族根基，反映早年運勢（1-16歲）。年柱的地支也決定了你的生肖。</li>
+      <li><strong>月柱</strong>：代表父母、成長環境，反映青年運勢（17-32歲）。月柱是判斷命局格局的重要依據。</li>
+      <li><strong>日柱</strong>：又稱「日主」，是整個命盤的核心。日柱的天干代表命主本人，是分析性格和判斷五行強弱的基準。</li>
+      <li><strong>時柱</strong>：代表子女、晚年境遇，反映晚年運勢（49歲以後）。時柱也揭示一個人的內心世界和潛意識。</li>
+    </ul>
+
+    <h2>天干與地支</h2>
+
+    <p>天干地支是八字命理的基本元素。十天干為：甲、乙、丙、丁、戊、己、庚、辛、壬、癸；十二地支為：子、丑、寅、卯、辰、巳、午、未、申、酉、戌、亥。</p>
+
+    <p>每一個天干和地支都有對應的五行屬性（金、木、水、火、土）和陰陽屬性。天干地支相互搭配，形成六十甲子的循環，用來紀年、紀月、紀日、紀時。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>類別</th>
+          <th>陽</th>
+          <th>陰</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>木</td>
+          <td>甲</td>
+          <td>乙</td>
+        </tr>
+        <tr>
+          <td>火</td>
+          <td>丙</td>
+          <td>丁</td>
+        </tr>
+        <tr>
+          <td>土</td>
+          <td>戊</td>
+          <td>己</td>
+        </tr>
+        <tr>
+          <td>金</td>
+          <td>庚</td>
+          <td>辛</td>
+        </tr>
+        <tr>
+          <td>水</td>
+          <td>壬</td>
+          <td>癸</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>五行的基本概念</h2>
+
+    <p>五行（金、木、水、火、土）是中國哲學的核心框架，在八字命理中扮演關鍵角色。五行之間存在「相生」與「相剋」的關係：</p>
+
+    <ul>
+      <li><strong>相生</strong>：木生火、火生土、土生金、金生水、水生木</li>
+      <li><strong>相剋</strong>：木剋土、土剋水、水剋火、火剋金、金剋木</li>
+    </ul>
+
+    <p>在八字分析中，五行的平衡與否直接影響命主的運勢。如果命盤中某一五行過旺或過弱，都會對人生產生相應的影響。理想的狀態是五行相對均衡，或者能夠找到合適的「用神」來調節。</p>
+
+    <h2>日主的重要性</h2>
+
+    <p>日柱的天干被稱為「日主」或「日元」，它代表命主本人。分析八字的第一步，就是確認日主的五行屬性和強弱程度。</p>
+
+    <p>比如日主為「甲木」，那命主本人的五行屬性就是木。接下來需要觀察整個命盤中木的力量是強是弱，以此來判斷「用神」——也就是命盤最需要的五行元素。</p>
+
+    <blockquote>
+      日主的強弱判斷是八字分析中最核心的步驟。日主偏旺，需要用洩耗的方式來平衡；日主偏弱，則需要生扶的元素來補強。
+    </blockquote>
+
+    <h2>十神系統</h2>
+
+    <p>十神是八字命理中另一個重要的概念，它描述的是命盤中其他天干與日主之間的關係。十神包括：比肩、劫財、食神、傷官、偏財、正財、七殺、正官、偏印、正印。</p>
+
+    <p>每一個十神都代表不同的人際關係、性格特質和生活面向。例如「正財」代表穩定的收入和踏實的性格，「偏財」則暗示意外之財和靈活的商業頭腦。透過分析十神的分布，可以更深入地了解命主的人生特質。</p>
+
+    <h2>如何開始學習八字？</h2>
+
+    <p>學習八字命理，建議從以下幾個步驟開始：</p>
+
+    <ol>
+      <li><strong>認識天干地支</strong>：熟記十天干和十二地支的名稱、五行屬性和陰陽分類。</li>
+      <li><strong>了解五行關係</strong>：掌握五行相生相剋的規律，以及五行在不同季節的旺衰。</li>
+      <li><strong>學會排盤</strong>：使用我們的<a href="/tools/chart-calculator">免費排盤工具</a>，練習排出自己和親友的命盤。</li>
+      <li><strong>分析日主</strong>：學會判斷日主的強弱，這是八字分析的第一步。</li>
+      <li><strong>研究十神</strong>：了解每個十神的含義，以及它們在命盤中的作用。</li>
+    </ol>
+
+    <p>八字命理是一門深奧的學問，需要長期的學習和實踐。但只要掌握了基本概念，你就能開始理解命盤背後蘊含的人生智慧。</p>
+
+    <div class="article-cta">
+      <h3>立即體驗八字排盤</h3>
+      <p>輸入你的出生資料，免費獲得完整的四柱八字命盤分析。</p>
+      <a href="/tools/chart-calculator" class="btn btn-primary">免費排盤</a>
+    </div>
+  </article>
+</Base>

@@ -1,0 +1,111 @@
+---
+export interface Props {
+  activePage?: string;
+}
+
+const { activePage = '' } = Astro.props;
+---
+
+<!-- Top accent bar -->
+<div class="nav-accent"></div>
+
+<!-- Top bar -->
+<div class="nav-topbar">
+  <span>八字研究所｜免費排盤・AI 即時命理分析</span>
+</div>
+
+<!-- Main navigation -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <!-- Brand -->
+    <a href="/" class="nav-brand" aria-label="八字研究所首頁">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Outer circle (seal border) -->
+        <circle cx="18" cy="18" r="16" stroke="#b22234" stroke-width="2.5" fill="none" />
+        <circle cx="18" cy="18" r="13.5" stroke="#b22234" stroke-width="0.8" fill="none" />
+        <!-- Stylized 八 character strokes -->
+        <path d="M14 11 L11 25" stroke="#b22234" stroke-width="2.2" stroke-linecap="round" />
+        <path d="M22 11 L25 25" stroke="#b22234" stroke-width="2.2" stroke-linecap="round" />
+        <!-- 字 simplified horizontal strokes -->
+        <line x1="12" y1="16" x2="24" y2="16" stroke="#b8860b" stroke-width="1.2" stroke-linecap="round" />
+        <line x1="13" y1="20" x2="23" y2="20" stroke="#b8860b" stroke-width="1.2" stroke-linecap="round" />
+      </svg>
+      <span>八字研究所</span>
+    </a>
+
+    <!-- Desktop nav links -->
+    <div class="nav-links">
+      <a href="/" class={`nav-link ${activePage === 'home' ? 'active' : ''}`}>首頁</a>
+      <a href="/about" class={`nav-link ${activePage === 'about' ? 'active' : ''}`}>關於</a>
+
+      <!-- Articles dropdown -->
+      <div class="nav-has-dropdown">
+        <a href="/articles" class={`nav-link ${activePage === 'articles' ? 'active' : ''}`}>
+          文章
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        <div class="nav-dropdown">
+          <a href="/articles/category/basics">基礎入門</a>
+          <a href="/articles/category/stems-branches">天干地支</a>
+          <a href="/articles/category/five-elements">五行學說</a>
+          <a href="/articles/category/ten-gods">十神解析</a>
+          <a href="/articles/category/practice">命理實戰</a>
+        </div>
+      </div>
+
+      <!-- Tools dropdown -->
+      <div class="nav-has-dropdown">
+        <a href="/tools" class={`nav-link ${activePage === 'tools' ? 'active' : ''}`}>
+          工具
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        <div class="nav-dropdown">
+          <a href="/tools/bazi-chart">八字排盤</a>
+          <a href="/tools/compatibility">合盤分析</a>
+          <a href="/tools/yearly-fortune">流年運勢</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="nav-cta">
+      <a href="/tools/bazi-chart" class="btn btn--primary btn--sm">免費排盤</a>
+    </div>
+
+    <!-- Hamburger toggle -->
+    <button class="nav-toggle" id="nav-toggle" aria-label="開啟選單" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<script>
+  // Scroll behaviour — add shadow
+  const nav = document.getElementById('main-nav');
+  if (nav) {
+    const onScroll = () => {
+      nav.classList.toggle('nav--scrolled', window.scrollY > 10);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Hamburger toggle
+  const toggle = document.getElementById('nav-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (toggle && mobileMenu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('is-open');
+      mobileMenu.classList.toggle('is-open', !isOpen);
+      toggle.classList.toggle('is-active', !isOpen);
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      document.body.style.overflow = isOpen ? '' : 'hidden';
+    });
+  }
+</script>

@@ -1,0 +1,232 @@
+---
+import Nav from '../components/Nav.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import Footer from '../components/Footer.astro';
+import SEOHead from '../components/SEOHead.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  keywords?: string;
+  ogImage?: string;
+  ogType?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  articleSection?: string;
+  articleTags?: string[];
+  robots?: string;
+  schema?: object;
+  activePage?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  keywords,
+  ogImage,
+  ogType,
+  publishedTime,
+  modifiedTime,
+  articleSection,
+  robots,
+  activePage,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <SEOHead
+      title={title}
+      description={description}
+      canonical={canonical}
+      keywords={keywords}
+      ogImage={ogImage}
+      ogType={ogType}
+      publishDate={publishedTime}
+      modifiedDate={modifiedTime}
+      articleSection={articleSection}
+      noindex={robots === 'noindex, nofollow'}
+    />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">跳至主要內容</a>
+    <div class="reading-progress" id="reading-progress"></div>
+
+    <Nav activePage={activePage} />
+    <MobileMenu activePage={activePage} />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <button class="back-to-top" id="back-to-top" aria-label="回到頂部">&#8593;</button>
+
+    <div class="mobile-sticky-cta">
+      <a href="/tools/chart-calculator?auto=1" class="btn btn--primary">免費排盤</a>
+      <a href="/tools/chart-calculator" class="btn btn--secondary">AI 命理分析</a>
+    </div>
+
+    <script>
+      // === Scroll handler: back to top visibility ===
+      const backToTop = document.getElementById('back-to-top');
+
+      window.addEventListener('scroll', () => {
+        if (backToTop) {
+          backToTop.classList.toggle('is-visible', window.scrollY > 400);
+        }
+      }, { passive: true });
+
+      if (backToTop) {
+        backToTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      // === Mobile menu: escape key close ===
+      const mobileMenu = document.getElementById('mobile-menu');
+      const navToggle = document.getElementById('nav-toggle');
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu?.classList.contains('is-open')) {
+          mobileMenu.classList.remove('is-open');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+          if (navToggle) {
+            navToggle.classList.remove('is-active');
+            navToggle.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      // === Article filter (category pills) ===
+      const filterPills = document.querySelectorAll('.filter-pill');
+      const articleCards = document.querySelectorAll('.article-card[data-category]');
+
+      filterPills.forEach((pill) => {
+        pill.addEventListener('click', () => {
+          filterPills.forEach((p) => p.classList.remove('active'));
+          pill.classList.add('active');
+          const category = pill.getAttribute('data-category');
+
+          articleCards.forEach((card) => {
+            if (card instanceof HTMLElement) {
+              if (category === 'all' || card.dataset.category === category) {
+                card.style.display = '';
+              } else {
+                card.style.display = 'none';
+              }
+            }
+          });
+        });
+      });
+
+      // === IntersectionObserver fade-up animations ===
+      const fadeEls = document.querySelectorAll('.fade-up');
+      if (fadeEls.length > 0) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        );
+        fadeEls.forEach((el) => observer.observe(el));
+      }
+
+      // === Image skeleton loader ===
+      document.querySelectorAll('.img-skeleton img').forEach((img) => {
+        if (img instanceof HTMLImageElement) {
+          const wrap = img.closest('.img-skeleton');
+          if (img.complete) {
+            wrap?.classList.add('img-loaded');
+          } else {
+            img.addEventListener('load', () => wrap?.classList.add('img-loaded'));
+          }
+        }
+      });
+
+      // === Reading progress bar ===
+      const progressBar = document.getElementById('reading-progress');
+      const articleBody = document.querySelector('.article-body');
+
+      if (progressBar && articleBody) {
+        window.addEventListener('scroll', () => {
+          const rect = articleBody.getBoundingClientRect();
+          const scrolled = -rect.top;
+          const total = rect.height - window.innerHeight;
+          const progress = Math.min(Math.max(scrolled / total, 0), 1);
+          progressBar.style.width = `${progress * 100}%`;
+        }, { passive: true });
+      }
+
+      // === Mobile TOC drawer ===
+      const tocToggle = document.getElementById('toc-toggle');
+      const tocDrawer = document.getElementById('toc-drawer');
+
+      if (tocToggle && tocDrawer) {
+        tocToggle.addEventListener('click', () => {
+          tocDrawer.classList.toggle('open');
+        });
+
+        tocDrawer?.querySelectorAll('a').forEach((a) => {
+          a.addEventListener('click', () => tocDrawer.classList.remove('open'));
+        });
+      }
+
+      // === Newsletter subscribe handler ===
+      const newsletterForm = document.getElementById('newsletter-form');
+      const newsletterMsg = document.querySelector('.newsletter-msg');
+
+      newsletterForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target as HTMLFormElement;
+        const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
+        const submitBtn = form.querySelector('button') as HTMLButtonElement;
+
+        if (!emailInput?.value) return;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = '送出中...';
+
+        try {
+          const res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: emailInput.value }),
+          });
+
+          const data = await res.json();
+
+          if (newsletterMsg) {
+            if (res.ok) {
+              newsletterMsg.textContent = '訂閱成功！感謝您的支持。';
+              (newsletterMsg as HTMLElement).style.color = '#4ade80';
+              emailInput.value = '';
+            } else {
+              newsletterMsg.textContent = data.error || '訂閱失敗，請稍後再試。';
+              (newsletterMsg as HTMLElement).style.color = '#f87171';
+            }
+          }
+        } catch {
+          if (newsletterMsg) {
+            newsletterMsg.textContent = '網路錯誤，請稍後再試。';
+            (newsletterMsg as HTMLElement).style.color = '#f87171';
+          }
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = '訂閱';
+        }
+      });
+    </script>
+  </body>
+</html>

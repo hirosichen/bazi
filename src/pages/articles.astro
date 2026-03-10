@@ -1,0 +1,120 @@
+---
+import Base from '../layouts/Base.astro';
+
+const articles = [
+  {
+    slug: 'what-is-bazi',
+    title: '八字入門：什麼是四柱八字？',
+    category: '基礎入門',
+    readTime: '10 分鐘',
+    excerpt: '從零開始了解四柱八字的基本概念，認識天干地支與八字命盤的結構。',
+    color: 'linear-gradient(135deg, #fce4ec, #f8bbd0)',
+    icon: '🏛️',
+  },
+  {
+    slug: 'heavenly-stems-earthly-branches',
+    title: '天干地支完全指南：十天干與十二地支',
+    category: '天干地支',
+    readTime: '12 分鐘',
+    excerpt: '深入認識十天干與十二地支，了解它們的五行屬性、陰陽分類及實際應用。',
+    color: 'linear-gradient(135deg, #e8eaf6, #c5cae9)',
+    icon: '📜',
+  },
+  {
+    slug: 'five-elements',
+    title: '五行相生相剋的奧秘',
+    category: '五行學說',
+    readTime: '10 分鐘',
+    excerpt: '探索五行（金木水火土）的相生相剋關係，理解五行在八字命理中的核心作用。',
+    color: 'linear-gradient(135deg, #e8f5e9, #c8e6c9)',
+    icon: '🔥',
+  },
+];
+
+const categories = ['全部', '基礎入門', '天干地支', '五行學說', '十神解析', '命理實戰'];
+---
+
+<Base
+  title="學習專欄 | 八字研究所"
+  description="八字命理學習資源，從入門到進階的完整教學文章，帶你深入了解四柱八字的世界。"
+  activePage="articles"
+>
+  <!-- Hero -->
+  <section class="articles-hero">
+    <div class="container">
+      <span class="overline">學習專欄</span>
+      <h1>命理學習文章</h1>
+      <p class="articles-hero-desc">從基礎概念到進階技巧，系統性地學習八字命理。</p>
+    </div>
+  </section>
+
+  <!-- Filter + Articles -->
+  <section class="section">
+    <div class="container">
+      <div class="filter-bar">
+        {categories.map((cat, i) => (
+          <button
+            class:list={['filter-pill', { active: i === 0 }]}
+            data-category={i === 0 ? 'all' : cat}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <div class="grid-3">
+        {articles.map((article) => (
+          <article class="article-card fade-up" data-category={article.category}>
+            <div
+              class="article-card-img"
+              style={`background: ${article.color}; display: flex; align-items: center; justify-content: center; font-size: 3rem;`}
+            >
+              {article.icon}
+            </div>
+            <div class="article-card-body">
+              <span class="article-card-category">{article.category}</span>
+              <h3><a href={`/articles/${article.slug}`}>{article.title}</a></h3>
+              <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 0.75rem;">{article.excerpt}</p>
+              <p class="article-card-meta">{article.readTime}閱讀</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter-section">
+    <div class="container fade-up">
+      <h2>訂閱八字研究所電子報</h2>
+      <p>每週精選一篇命理學習文章，直送你的信箱。</p>
+      <form class="newsletter-form" id="newsletter-form">
+        <input type="email" placeholder="輸入你的 Email" required />
+        <button type="submit">訂閱</button>
+      </form>
+      <div class="newsletter-msg"></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .articles-hero {
+    padding: 10rem 0 4rem;
+    background: linear-gradient(135deg, var(--ink), #2c0a14);
+    color: #fff;
+    text-align: center;
+  }
+
+  .articles-hero h1 {
+    color: #fff;
+    margin: 1rem 0;
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .articles-hero-desc {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+</style>
