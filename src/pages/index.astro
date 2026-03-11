@@ -71,22 +71,30 @@ import Base from '../layouts/Base.astro';
       </div>
       <div class="grid-4">
         <div class="card fade-up">
-          <div class="card-icon">⚡</div>
+          <div class="value-img img-skeleton">
+            <img src="/images/sections/value-instant.webp" alt="即時排盤" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
+          </div>
           <h3>即時排盤</h3>
           <p>輸入出生年月日時，一鍵完成四柱八字排盤，即時獲得完整命盤。</p>
         </div>
         <div class="card fade-up">
-          <div class="card-icon">🤖</div>
+          <div class="value-img img-skeleton">
+            <img src="/images/sections/value-ai.webp" alt="AI 分析" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
+          </div>
           <h3>AI 分析</h3>
           <p>結合人工智慧技術，根據你的命盤提供個人化的命理解讀與建議。</p>
         </div>
         <div class="card fade-up">
-          <div class="card-icon">🎁</div>
+          <div class="value-img img-skeleton">
+            <img src="/images/sections/value-free.webp" alt="完全免費" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
+          </div>
           <h3>完全免費</h3>
           <p>所有排盤工具與學習資源完全免費開放，無需註冊即可使用。</p>
         </div>
         <div class="card fade-up">
-          <div class="card-icon">📜</div>
+          <div class="value-img img-skeleton">
+            <img src="/images/sections/value-wisdom.webp" alt="命理智慧" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
+          </div>
           <h3>命理智慧</h3>
           <p>忠於傳統，提供完整的天干地支、五行、十神分析，深入理解命盤。</p>
         </div>
@@ -95,7 +103,7 @@ import Base from '../layouts/Base.astro';
   </section>
 
   <!-- Stats -->
-  <section class="section section-alt">
+  <section class="section" style="background: var(--dark-indigo); color: white;">
     <div class="container">
       <div class="stats-grid fade-up" id="stats">
         <div class="stat-item">
@@ -126,23 +134,35 @@ import Base from '../layouts/Base.astro';
         <h2>探索你的命運地圖</h2>
       </div>
       <div class="grid-3">
-        <div class="card fade-up">
-          <div class="card-icon">🏛️</div>
-          <h3>八字排盤</h3>
-          <p>輸入出生資料，即時生成四柱八字命盤，含五行分析與十神解讀。</p>
-          <a href="/tools/chart-calculator" class="btn btn-outline" style="margin-top: 1rem;">開始排盤</a>
+        <div class="tool-card fade-up">
+          <div class="tool-card-image img-skeleton">
+            <img src="/images/sections/tool-chart.webp" alt="八字排盤" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
+          </div>
+          <div class="tool-card-body">
+            <h3>八字排盤</h3>
+            <p>輸入出生資料，即時生成四柱八字命盤，含五行分析與十神解讀。</p>
+            <a href="/tools/chart-calculator" class="tool-card-link">開始排盤 →</a>
+          </div>
         </div>
-        <div class="card fade-up">
-          <div class="card-icon">🧠</div>
-          <h3>AI 命理分析</h3>
-          <p>根據你的命盤，提供個人化的 AI 深度命理解讀與人生建議。</p>
-          <a href="/tools/chart-calculator" class="btn btn-outline" style="margin-top: 1rem;">立即體驗</a>
+        <div class="tool-card fade-up">
+          <div class="tool-card-image img-skeleton">
+            <img src="/images/sections/tool-ai.webp" alt="AI 命理分析" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
+          </div>
+          <div class="tool-card-body">
+            <h3>AI 命理分析</h3>
+            <p>根據你的命盤，提供個人化的 AI 深度命理解讀與人生建議。</p>
+            <a href="/tools/chart-calculator" class="tool-card-link">立即體驗 →</a>
+          </div>
         </div>
-        <div class="card fade-up">
-          <div class="card-icon">📅</div>
-          <h3>流年運勢</h3>
-          <p>查詢每年運勢走向，了解大運與流年對命盤的影響。</p>
-          <a href="/tools" class="btn btn-outline" style="margin-top: 1rem;">敬請期待</a>
+        <div class="tool-card fade-up">
+          <div class="tool-card-image img-skeleton">
+            <img src="/images/sections/tool-yearly.webp" alt="流年運勢" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
+          </div>
+          <div class="tool-card-body">
+            <h3>流年運勢</h3>
+            <p>查詢每年運勢走向，了解大運與流年對命盤的影響。</p>
+            <a href="/tools" class="tool-card-link">敬請期待 →</a>
+          </div>
         </div>
       </div>
     </div>
@@ -159,44 +179,44 @@ import Base from '../layouts/Base.astro';
         <div class="testimonial-card fade-up">
           <div class="testimonial-stars">★★★★★</div>
           <p class="testimonial-text">「排盤速度很快，結果跟我之前找老師算的一模一樣。AI 分析的建議也很實用，推薦給所有對命理有興趣的人！」</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">陳</div>
+          <div class="testimonial-avatar">
+            <img src="/images/testimonials/testimonial-man-professor.webp" alt="陳小明" loading="lazy" />
             <div>
-              <div class="testimonial-author-name">陳小明</div>
-              <div class="testimonial-author-title">軟體工程師</div>
+              <strong>陳小明</strong>
+              <span>軟體工程師</span>
             </div>
           </div>
         </div>
         <div class="testimonial-card fade-up">
           <div class="testimonial-stars">★★★★★</div>
           <p class="testimonial-text">「一直想學八字但不知道從何開始，這個網站的學習資源很完整，排盤工具也很方便，終於可以自己看命盤了。」</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">林</div>
+          <div class="testimonial-avatar">
+            <img src="/images/testimonials/testimonial-woman-taipei.webp" alt="林美玲" loading="lazy" />
             <div>
-              <div class="testimonial-author-name">林美玲</div>
-              <div class="testimonial-author-title">行銷經理</div>
+              <strong>林美玲</strong>
+              <span>行銷經理</span>
             </div>
           </div>
         </div>
         <div class="testimonial-card fade-up">
           <div class="testimonial-stars">★★★★★</div>
           <p class="testimonial-text">「完全免費這點真的很佛心！五行分析圖表一目了然，十神解讀也寫得很清楚，是我用過最好的排盤工具。」</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">王</div>
+          <div class="testimonial-avatar">
+            <img src="/images/testimonials/testimonial-student.webp" alt="王大偉" loading="lazy" />
             <div>
-              <div class="testimonial-author-name">王大偉</div>
-              <div class="testimonial-author-title">自由工作者</div>
+              <strong>王大偉</strong>
+              <span>自由工作者</span>
             </div>
           </div>
         </div>
         <div class="testimonial-card fade-up">
           <div class="testimonial-stars">★★★★★</div>
           <p class="testimonial-text">「AI 命理分析的結果讓我很驚訝，對我的性格描述非常準確。介面也很美觀，用起來很舒服。」</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">張</div>
+          <div class="testimonial-avatar">
+            <img src="/images/testimonials/testimonial-woman-freelance.webp" alt="張雅婷" loading="lazy" />
             <div>
-              <div class="testimonial-author-name">張雅婷</div>
-              <div class="testimonial-author-title">設計師</div>
+              <strong>張雅婷</strong>
+              <span>設計師</span>
             </div>
           </div>
         </div>
@@ -205,8 +225,9 @@ import Base from '../layouts/Base.astro';
   </section>
 
   <!-- Mid-page CTA -->
-  <section class="cta-section">
-    <div class="container fade-up">
+  <section class="cta-section" style="background: url('/images/sections/cta-background.webp') center/cover no-repeat;">
+    <div class="cta-overlay"></div>
+    <div class="container fade-up" style="position: relative; z-index: 1;">
       <h2>還在猶豫？試一次就知道</h2>
       <p>不需要任何命理知識，只要輸入你的出生資料，讓千年的智慧為你指引方向。</p>
       <a href="/tools/chart-calculator" class="btn btn-white btn-lg">立即免費排盤</a>
@@ -223,8 +244,8 @@ import Base from '../layouts/Base.astro';
       </div>
       <div class="grid-3">
         <article class="article-card fade-up">
-          <div class="article-card-img img-skeleton" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
-            🏛️
+          <div class="article-card-img img-skeleton">
+            <img src="/articles/hero/article-what-is-bazi.webp" alt="八字入門" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
           </div>
           <div class="article-card-body">
             <span class="article-card-category">基礎入門</span>
@@ -233,8 +254,8 @@ import Base from '../layouts/Base.astro';
           </div>
         </article>
         <article class="article-card fade-up">
-          <div class="article-card-img img-skeleton" style="background: linear-gradient(135deg, #e8eaf6, #c5cae9); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
-            📜
+          <div class="article-card-img img-skeleton">
+            <img src="/articles/hero/article-stems-branches.webp" alt="天干地支" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
           </div>
           <div class="article-card-body">
             <span class="article-card-category">天干地支</span>
@@ -243,8 +264,8 @@ import Base from '../layouts/Base.astro';
           </div>
         </article>
         <article class="article-card fade-up">
-          <div class="article-card-img img-skeleton" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
-            🔥
+          <div class="article-card-img img-skeleton">
+            <img src="/articles/hero/article-five-elements.webp" alt="五行學說" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
           </div>
           <div class="article-card-body">
             <span class="article-card-category">五行學說</span>
