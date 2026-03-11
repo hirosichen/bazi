@@ -118,10 +118,14 @@
   --ink: var(--near-black);
   --crimson: var(--jade);
   --crimson-light: var(--jade-light);
+  --crimson-bg: var(--jade-subtle);
+  --text: var(--charcoal);
   --text-light: var(--slate);
+  --text-lighter: var(--grey-light);
   --bg: var(--white);
   --bg-alt: var(--cream);
   --bg-warm: var(--cream);
+  --border: var(--border-color);
 }
 
 /* ---------- 1. Reset & Base ---------- */
