@@ -347,6 +347,8 @@ strong { font-weight: 700; }
 /* Aliases for kebab-case usage */
 .btn-primary { background: var(--jade); color: var(--white); border-color: var(--jade); }
 .btn-primary:hover { background: var(--jade-dark); border-color: var(--jade-dark); box-shadow: var(--shadow-jade); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--near-black); border-color: var(--border-strong); }
+.btn-outline:hover { border-color: var(--jade); color: var(--jade); transform: translateY(-1px); }
 .btn-lg { padding: 0.9em 2em; font-size: var(--text-base); }
 
 .btn--gold {

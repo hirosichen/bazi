@@ -43,7 +43,7 @@ import Base from '../layouts/Base.astro';
             <li>感情相合度評分</li>
             <li>相處建議</li>
           </ul>
-          <span class="btn btn-outline tool-coming" style="margin-top: 1.5rem; width: 100%; opacity: 0.6; pointer-events: none;">即將推出</span>
+          <span class="btn btn--outline" style="margin-top: 1.5rem; width: 100%; opacity: 0.5; pointer-events: none;">即將推出</span>
         </div>
 
         <div class="card tool-card fade-up">
@@ -56,7 +56,7 @@ import Base from '../layouts/Base.astro';
             <li>流年吉凶提示</li>
             <li>開運建議</li>
           </ul>
-          <span class="btn btn-outline tool-coming" style="margin-top: 1.5rem; width: 100%; opacity: 0.6; pointer-events: none;">即將推出</span>
+          <span class="btn btn--outline" style="margin-top: 1.5rem; width: 100%; opacity: 0.5; pointer-events: none;">即將推出</span>
         </div>
       </div>
     </div>
@@ -74,8 +74,8 @@ import Base from '../layouts/Base.astro';
 
 <style>
   .tools-hero {
-    padding: 10rem 0 4rem;
-    background: linear-gradient(135deg, var(--ink), #2c0a14);
+    padding: calc(var(--nav-height) + var(--topbar-height) + 3px + 4rem) 0 4rem;
+    background: linear-gradient(135deg, var(--near-black), var(--dark-indigo));
     color: #fff;
     text-align: center;
   }
