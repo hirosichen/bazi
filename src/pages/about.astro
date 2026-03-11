@@ -8,10 +8,12 @@ import Base from '../layouts/Base.astro';
   activePage="about"
 >
   <!-- Hero -->
-  <section class="about-hero">
-    <div class="container">
+  <section class="about-hero" style="position: relative; overflow: hidden;">
+    <div class="pattern-overlay" aria-hidden="true"></div>
+    <div class="ambient-glow" style="width: 400px; height: 400px; background: var(--jade); top: -100px; right: -50px; opacity: 0.08;" aria-hidden="true"></div>
+    <div class="container" style="position: relative; z-index: 1;">
       <span class="overline">關於我們</span>
-      <h1>關於八字研究所</h1>
+      <h1 class="display-heading">關於八字研究所</h1>
       <p class="about-hero-desc">
         我們相信，流傳數千年的八字命理不應該只是少數人的專利。八字研究所的使命，是讓每個人都能輕鬆接觸這門古老的智慧，透過現代科技的力量，重新認識自己、理解人生。
       </p>
@@ -27,22 +29,30 @@ import Base from '../layouts/Base.astro';
       </div>
       <div class="grid-4">
         <div class="card fade-up">
-          <div class="card-icon">📜</div>
+          <div class="card-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--jade)" stroke-width="1.5" stroke-linecap="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6M8 11h8"/></svg>
+          </div>
           <h3>傳統智慧</h3>
           <p>忠於千年命理傳統，嚴謹考證天干地支、五行生剋、十神體系，確保每一個計算結果都經得起檢驗。</p>
         </div>
         <div class="card fade-up">
-          <div class="card-icon">🤖</div>
+          <div class="card-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--jade)" stroke-width="1.5" stroke-linecap="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93L12 10V8m0-6a4 4 0 0 0-4 4c0 1.95 1.4 3.58 3.25 3.93L12 10"/><path d="M9 16h6M9 20h6M10 16v4M14 16v4"/><circle cx="12" cy="13" r="1"/></svg>
+          </div>
           <h3>AI 科技</h3>
           <p>運用最新的人工智慧技術，將複雜的命盤資訊轉化為易懂的個人化解讀，讓命理知識不再艱澀難懂。</p>
         </div>
         <div class="card fade-up">
-          <div class="card-icon">🌐</div>
+          <div class="card-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--jade)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
           <h3>免費開放</h3>
           <p>所有排盤工具和學習資源完全免費開放。我們相信，讓更多人接觸命理智慧，能為社會帶來正面的影響。</p>
         </div>
         <div class="card fade-up">
-          <div class="card-icon">🎯</div>
+          <div class="card-icon-wrap">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--jade)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
           <h3>專業深度</h3>
           <p>從基礎的四柱排盤到進階的大運分析，我們追求每一個功能的專業深度，讓初學者和專業人士都能受益。</p>
         </div>
@@ -61,7 +71,22 @@ import Base from '../layouts/Base.astro';
           <p>每一行程式碼、每一篇文章，都承載著我們對傳統文化的敬意和對現代使用者的關懷。我們不斷學習、不斷改進，只為給你帶來更好的命理體驗。</p>
         </div>
         <div class="about-team-visual">
-          <div class="about-symbol">☯</div>
+          <div class="about-symbol-container">
+            <svg class="about-yinyang" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="yy-grad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="var(--jade)" />
+                  <stop offset="100%" stop-color="var(--bronze)" />
+                </linearGradient>
+              </defs>
+              <circle cx="100" cy="100" r="96" fill="none" stroke="url(#yy-grad)" stroke-width="1.5" opacity="0.3" />
+              <circle cx="100" cy="100" r="80" fill="none" stroke="url(#yy-grad)" stroke-width="0.8" opacity="0.15" />
+              <path d="M100 20 A80 80 0 0 1 100 180 A40 40 0 0 1 100 100 A40 40 0 0 0 100 20Z" fill="var(--jade)" opacity="0.12" />
+              <path d="M100 20 A80 80 0 0 0 100 180 A40 40 0 0 0 100 100 A40 40 0 0 1 100 20Z" fill="var(--bronze)" opacity="0.08" />
+              <circle cx="100" cy="60" r="8" fill="var(--bronze)" opacity="0.2" />
+              <circle cx="100" cy="140" r="8" fill="var(--jade)" opacity="0.15" />
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -120,9 +145,24 @@ import Base from '../layouts/Base.astro';
     line-height: 1.8;
   }
 
-  .card-icon {
-    font-size: 2rem;
-    margin-bottom: var(--space-md);
+  .card-icon-wrap {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--jade-subtle);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-lg);
+    transition: all 0.3s ease;
+  }
+
+  .card:hover .card-icon-wrap {
+    background: linear-gradient(135deg, var(--jade), var(--jade-dark));
+  }
+
+  .card:hover .card-icon-wrap svg {
+    stroke: #fff;
   }
 
   .about-team {
@@ -147,11 +187,21 @@ import Base from '../layouts/Base.astro';
     justify-content: center;
   }
 
-  .about-symbol {
-    font-size: 10rem;
-    opacity: 0.15;
-    color: var(--jade);
-    line-height: 1;
+  .about-symbol-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+
+  .about-yinyang {
+    width: 100%;
+    height: 100%;
+    animation: slowSpin 30s linear infinite;
+  }
+
+  @keyframes slowSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 
   .about-contact {

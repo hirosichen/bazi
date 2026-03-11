@@ -8,10 +8,11 @@ import Base from '../layouts/Base.astro';
   activePage="tools"
 >
   <!-- Hero -->
-  <section class="tools-hero">
-    <div class="container">
+  <section class="tools-hero" style="position: relative; overflow: hidden;">
+    <div class="pattern-overlay" aria-hidden="true"></div>
+    <div class="container" style="position: relative; z-index: 1;">
       <span class="overline">命理工具</span>
-      <h1>命理工具</h1>
+      <h1 class="display-heading">命理工具</h1>
       <p class="tools-hero-desc">探索我們提供的各種命理分析工具，從基礎排盤到進階運勢分析，一應俱全。</p>
     </div>
   </section>
@@ -21,7 +22,9 @@ import Base from '../layouts/Base.astro';
     <div class="container">
       <div class="grid-3">
         <div class="card tool-card fade-up">
-          <div class="card-icon">🏛️</div>
+          <div class="tool-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18M3 15h18M15 3v18"/></svg>
+          </div>
           <h3>八字排盤</h3>
           <p>輸入出生年月日時，即時計算你的四柱八字命盤。包含天干地支、五行分布、十神分析、納音等完整資訊。</p>
           <ul class="tool-features">
@@ -34,7 +37,9 @@ import Base from '../layouts/Base.astro';
         </div>
 
         <div class="card tool-card fade-up">
-          <div class="card-icon">💑</div>
+          <div class="tool-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
           <h3>合盤分析</h3>
           <p>比較兩個人的八字命盤，分析彼此的五行互補、十神關係，了解兩人之間的契合度與相處建議。</p>
           <ul class="tool-features">
@@ -47,7 +52,9 @@ import Base from '../layouts/Base.astro';
         </div>
 
         <div class="card tool-card fade-up">
-          <div class="card-icon">📅</div>
+          <div class="tool-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+          </div>
           <h3>流年運勢</h3>
           <p>根據你的命盤，分析每年的運勢走向。了解大運與流年天干地支對命盤的影響，掌握人生節奏。</p>
           <ul class="tool-features">
@@ -91,6 +98,25 @@ import Base from '../layouts/Base.astro';
     font-size: 1.15rem;
     max-width: 600px;
     margin: 0 auto;
+  }
+
+  .tool-icon-wrap {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--jade-subtle);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-lg);
+    color: var(--jade);
+    transition: all 0.3s ease;
+  }
+
+  .card:hover .tool-icon-wrap {
+    background: linear-gradient(135deg, var(--jade), var(--jade-dark));
+    color: #fff;
+    transform: scale(1.05);
   }
 
   .tool-card {
