@@ -100,8 +100,8 @@ import Base from '../layouts/Base.astro';
 
 <style>
   .about-hero {
-    padding: 10rem 0 4rem;
-    background: linear-gradient(135deg, var(--ink), #2c0a14);
+    padding: calc(var(--nav-height) + var(--topbar-height) + 3px + 4rem) 0 4rem;
+    background: linear-gradient(135deg, var(--near-black), var(--dark-indigo));
     color: #fff;
     text-align: center;
   }
@@ -120,6 +120,11 @@ import Base from '../layouts/Base.astro';
     line-height: 1.8;
   }
 
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+  }
+
   .about-team {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
@@ -132,7 +137,7 @@ import Base from '../layouts/Base.astro';
   }
 
   .about-team-content p {
-    color: var(--text-light);
+    color: var(--slate);
     line-height: 1.85;
   }
 
@@ -145,7 +150,7 @@ import Base from '../layouts/Base.astro';
   .about-symbol {
     font-size: 10rem;
     opacity: 0.15;
-    color: var(--crimson);
+    color: var(--jade);
     line-height: 1;
   }
 
@@ -160,8 +165,9 @@ import Base from '../layouts/Base.astro';
   .about-contact-card {
     text-align: center;
     padding: 2rem;
-    background: var(--bg-alt);
-    border-radius: var(--radius-md);
+    background: var(--surface-alt);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
   }
 
   .about-contact-card h3 {
@@ -171,6 +177,9 @@ import Base from '../layouts/Base.astro';
 
   .about-contact-card a {
     font-size: 1rem;
+    color: var(--jade);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   @media (max-width: 768px) {

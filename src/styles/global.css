@@ -113,6 +113,15 @@
   --max-width: 1200px;
   --nav-height: 72px;
   --topbar-height: 36px;
+
+  /* Legacy aliases (compat with yijin naming) */
+  --ink: var(--near-black);
+  --crimson: var(--jade);
+  --crimson-light: var(--jade-light);
+  --text-light: var(--slate);
+  --bg: var(--white);
+  --bg-alt: var(--cream);
+  --bg-warm: var(--cream);
 }
 
 /* ---------- 1. Reset & Base ---------- */
@@ -1312,11 +1321,25 @@ strong { font-weight: 700; }
   border: 1px solid var(--border-color);
   overflow: hidden;
   transition: var(--transition-base);
+  padding: var(--space-xl);
 }
 
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
+  border-color: var(--jade-glow);
+}
+
+.card h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.card p {
+  font-size: var(--text-sm);
+  color: var(--grey);
+  line-height: 1.7;
+  margin: 0;
 }
 
 .article-card {
