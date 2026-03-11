@@ -20,7 +20,7 @@ import Base from '../layouts/Base.astro';
 
     <div class="container hero-content">
       <span class="overline hero-overline">免費・即時排盤・AI 智慧解讀</span>
-      <h1>四柱八字命理<br>解讀你的人生密碼</h1>
+      <h1>四柱八字命理<br>解讀你的<em>人生密碼</em></h1>
       <p class="hero-desc">傳承千年的東方命理智慧，結合現代科技，為你提供即時、精準的八字排盤與命理分析。</p>
 
       <form class="hero-form" id="hero-form">
@@ -55,10 +55,20 @@ import Base from '../layouts/Base.astro';
             </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-lg hero-submit">免費排盤</button>
+        <button type="submit" class="btn btn-primary btn-lg hero-submit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          免費排盤
+        </button>
       </form>
 
-      <p class="hero-proof">已有超過 <strong>2,000</strong> 人使用</p>
+      <div class="hero-trust">
+        <div class="hero-trust-avatars">
+          <img src="/images/testimonials/testimonial-woman-taipei.webp" alt="" loading="lazy" />
+          <img src="/images/testimonials/testimonial-man-professor.webp" alt="" loading="lazy" />
+          <img src="/images/testimonials/testimonial-student.webp" alt="" loading="lazy" />
+        </div>
+        <p>已有超過 <strong>2,000+</strong> 人使用</p>
+      </div>
     </div>
   </section>
 
@@ -69,31 +79,31 @@ import Base from '../layouts/Base.astro';
         <span class="overline">為什麼選擇八字研究所</span>
         <h2>全方位的命理服務</h2>
       </div>
-      <div class="grid-4">
-        <div class="card fade-up">
-          <div class="value-img img-skeleton">
-            <img src="/images/sections/value-instant.webp" alt="即時排盤" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
+      <div class="grid-4 value-cards">
+        <div class="value-card fade-up">
+          <div class="value-card-icon">
+            <img src="/images/sections/value-instant.webp" alt="即時排盤" loading="lazy" />
           </div>
           <h3>即時排盤</h3>
           <p>輸入出生年月日時，一鍵完成四柱八字排盤，即時獲得完整命盤。</p>
         </div>
-        <div class="card fade-up">
-          <div class="value-img img-skeleton">
-            <img src="/images/sections/value-ai.webp" alt="AI 分析" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
+        <div class="value-card fade-up">
+          <div class="value-card-icon">
+            <img src="/images/sections/value-ai.webp" alt="AI 分析" loading="lazy" />
           </div>
           <h3>AI 分析</h3>
           <p>結合人工智慧技術，根據你的命盤提供個人化的命理解讀與建議。</p>
         </div>
-        <div class="card fade-up">
-          <div class="value-img img-skeleton">
-            <img src="/images/sections/value-free.webp" alt="完全免費" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
+        <div class="value-card fade-up">
+          <div class="value-card-icon">
+            <img src="/images/sections/value-free.webp" alt="完全免費" loading="lazy" />
           </div>
           <h3>完全免費</h3>
           <p>所有排盤工具與學習資源完全免費開放，無需註冊即可使用。</p>
         </div>
-        <div class="card fade-up">
-          <div class="value-img img-skeleton">
-            <img src="/images/sections/value-wisdom.webp" alt="命理智慧" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
+        <div class="value-card fade-up">
+          <div class="value-card-icon">
+            <img src="/images/sections/value-wisdom.webp" alt="命理智慧" loading="lazy" />
           </div>
           <h3>命理智慧</h3>
           <p>忠於傳統，提供完整的天干地支、五行、十神分析，深入理解命盤。</p>
@@ -103,22 +113,37 @@ import Base from '../layouts/Base.astro';
   </section>
 
   <!-- Stats -->
-  <section class="section" style="background: var(--dark-indigo); color: white;">
+  <section class="stats-band">
     <div class="container">
       <div class="stats-grid fade-up" id="stats">
         <div class="stat-item">
+          <div class="stat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+          </div>
           <div class="stat-number" data-target="2000">0</div>
           <div class="stat-label">排盤次數</div>
         </div>
+        <div class="stat-divider"></div>
         <div class="stat-item">
+          <div class="stat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
           <div class="stat-number" data-target="10">0</div>
           <div class="stat-label">天干</div>
         </div>
+        <div class="stat-divider"></div>
         <div class="stat-item">
+          <div class="stat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
           <div class="stat-number" data-target="12">0</div>
           <div class="stat-label">地支</div>
         </div>
+        <div class="stat-divider"></div>
         <div class="stat-item">
+          <div class="stat-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
           <div class="stat-number" data-target="4.9" data-decimal="true">0</div>
           <div class="stat-label">使用者好評</div>
         </div>
@@ -127,41 +152,44 @@ import Base from '../layouts/Base.astro';
   </section>
 
   <!-- Tools Preview -->
-  <section class="section" id="tools-preview">
+  <section class="section section-alt" id="tools-preview">
     <div class="container">
       <div class="section-header fade-up">
         <span class="overline">命理工具</span>
         <h2>探索你的命運地圖</h2>
       </div>
       <div class="grid-3">
-        <div class="tool-card fade-up">
+        <a href="/tools/chart-calculator" class="tool-card tool-card--primary fade-up">
           <div class="tool-card-image img-skeleton">
             <img src="/images/sections/tool-chart.webp" alt="八字排盤" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
           </div>
           <div class="tool-card-body">
+            <span class="tool-card-tag">熱門</span>
             <h3>八字排盤</h3>
             <p>輸入出生資料，即時生成四柱八字命盤，含五行分析與十神解讀。</p>
-            <a href="/tools/chart-calculator" class="tool-card-link">開始排盤 →</a>
+            <span class="tool-card-link">開始排盤 →</span>
           </div>
-        </div>
-        <div class="tool-card fade-up">
+        </a>
+        <a href="/tools/chart-calculator" class="tool-card fade-up">
           <div class="tool-card-image img-skeleton">
             <img src="/images/sections/tool-ai.webp" alt="AI 命理分析" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
           </div>
           <div class="tool-card-body">
+            <span class="tool-card-tag">AI 驅動</span>
             <h3>AI 命理分析</h3>
             <p>根據你的命盤，提供個人化的 AI 深度命理解讀與人生建議。</p>
-            <a href="/tools/chart-calculator" class="tool-card-link">立即體驗 →</a>
+            <span class="tool-card-link">立即體驗 →</span>
           </div>
-        </div>
-        <div class="tool-card fade-up">
+        </a>
+        <div class="tool-card tool-card--coming fade-up">
           <div class="tool-card-image img-skeleton">
             <img src="/images/sections/tool-yearly.webp" alt="流年運勢" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
           </div>
           <div class="tool-card-body">
+            <span class="tool-card-tag tool-card-tag--muted">即將推出</span>
             <h3>流年運勢</h3>
             <p>查詢每年運勢走向，了解大運與流年對命盤的影響。</p>
-            <a href="/tools" class="tool-card-link">敬請期待 →</a>
+            <span class="tool-card-link tool-card-link--muted">敬請期待</span>
           </div>
         </div>
       </div>
@@ -169,54 +197,56 @@ import Base from '../layouts/Base.astro';
   </section>
 
   <!-- Testimonials -->
-  <section class="section section-alt" id="testimonials">
+  <section class="section" id="testimonials">
     <div class="container">
       <div class="section-header fade-up">
         <span class="overline">使用者回饋</span>
         <h2>他們怎麼說</h2>
       </div>
-      <div class="grid-4">
-        <div class="testimonial-card fade-up">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">「排盤速度很快，結果跟我之前找老師算的一模一樣。AI 分析的建議也很實用，推薦給所有對命理有興趣的人！」</p>
-          <div class="testimonial-avatar">
-            <img src="/images/testimonials/testimonial-man-professor.webp" alt="陳小明" loading="lazy" />
-            <div>
-              <strong>陳小明</strong>
-              <span>軟體工程師</span>
+      <div class="testimonial-marquee fade-up">
+        <div class="testimonial-track">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">「排盤速度很快，結果跟我之前找老師算的一模一樣。AI 分析的建議也很實用，推薦給所有對命理有興趣的人！」</p>
+            <div class="testimonial-avatar">
+              <img src="/images/testimonials/testimonial-man-professor.webp" alt="陳小明" loading="lazy" />
+              <div>
+                <strong>陳小明</strong>
+                <span>軟體工程師</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="testimonial-card fade-up">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">「一直想學八字但不知道從何開始，這個網站的學習資源很完整，排盤工具也很方便，終於可以自己看命盤了。」</p>
-          <div class="testimonial-avatar">
-            <img src="/images/testimonials/testimonial-woman-taipei.webp" alt="林美玲" loading="lazy" />
-            <div>
-              <strong>林美玲</strong>
-              <span>行銷經理</span>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">「一直想學八字但不知道從何開始，這個網站的學習資源很完整，排盤工具也很方便，終於可以自己看命盤了。」</p>
+            <div class="testimonial-avatar">
+              <img src="/images/testimonials/testimonial-woman-taipei.webp" alt="林美玲" loading="lazy" />
+              <div>
+                <strong>林美玲</strong>
+                <span>行銷經理</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="testimonial-card fade-up">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">「完全免費這點真的很佛心！五行分析圖表一目了然，十神解讀也寫得很清楚，是我用過最好的排盤工具。」</p>
-          <div class="testimonial-avatar">
-            <img src="/images/testimonials/testimonial-student.webp" alt="王大偉" loading="lazy" />
-            <div>
-              <strong>王大偉</strong>
-              <span>自由工作者</span>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">「完全免費這點真的很佛心！五行分析圖表一目了然，十神解讀也寫得很清楚，是我用過最好的排盤工具。」</p>
+            <div class="testimonial-avatar">
+              <img src="/images/testimonials/testimonial-student.webp" alt="王大偉" loading="lazy" />
+              <div>
+                <strong>王大偉</strong>
+                <span>自由工作者</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="testimonial-card fade-up">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">「AI 命理分析的結果讓我很驚訝，對我的性格描述非常準確。介面也很美觀，用起來很舒服。」</p>
-          <div class="testimonial-avatar">
-            <img src="/images/testimonials/testimonial-woman-freelance.webp" alt="張雅婷" loading="lazy" />
-            <div>
-              <strong>張雅婷</strong>
-              <span>設計師</span>
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">「AI 命理分析的結果讓我很驚訝，對我的性格描述非常準確。介面也很美觀，用起來很舒服。」</p>
+            <div class="testimonial-avatar">
+              <img src="/images/testimonials/testimonial-woman-freelance.webp" alt="張雅婷" loading="lazy" />
+              <div>
+                <strong>張雅婷</strong>
+                <span>設計師</span>
+              </div>
             </div>
           </div>
         </div>
@@ -235,7 +265,7 @@ import Base from '../layouts/Base.astro';
   </section>
 
   <!-- Featured Articles -->
-  <section class="section" id="featured-articles">
+  <section class="section section-alt" id="featured-articles">
     <div class="container">
       <div class="section-header fade-up">
         <span class="overline">學習專欄</span>
@@ -243,36 +273,42 @@ import Base from '../layouts/Base.astro';
         <p>從入門到進階，帶你深入了解八字命理的世界。</p>
       </div>
       <div class="grid-3">
-        <article class="article-card fade-up">
+        <a href="/articles/what-is-bazi" class="article-card fade-up">
           <div class="article-card-img img-skeleton">
             <img src="/articles/hero/article-what-is-bazi.webp" alt="八字入門" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
           </div>
           <div class="article-card-body">
             <span class="article-card-category">基礎入門</span>
-            <h3><a href="/articles/what-is-bazi">八字入門：什麼是四柱八字？</a></h3>
-            <p class="article-card-meta">10 分鐘閱讀</p>
+            <h3>八字入門：什麼是四柱八字？</h3>
+            <p class="article-card-excerpt">了解四柱八字的基本概念、起源與核心原理。</p>
+            <span class="article-card-meta">10 分鐘閱讀</span>
           </div>
-        </article>
-        <article class="article-card fade-up">
+        </a>
+        <a href="/articles/heavenly-stems-earthly-branches" class="article-card fade-up">
           <div class="article-card-img img-skeleton">
             <img src="/articles/hero/article-stems-branches.webp" alt="天干地支" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
           </div>
           <div class="article-card-body">
             <span class="article-card-category">天干地支</span>
-            <h3><a href="/articles/heavenly-stems-earthly-branches">天干地支完全指南</a></h3>
-            <p class="article-card-meta">12 分鐘閱讀</p>
+            <h3>天干地支完全指南</h3>
+            <p class="article-card-excerpt">深入認識十天干、十二地支的象徵意義與應用。</p>
+            <span class="article-card-meta">12 分鐘閱讀</span>
           </div>
-        </article>
-        <article class="article-card fade-up">
+        </a>
+        <a href="/articles/five-elements" class="article-card fade-up">
           <div class="article-card-img img-skeleton">
             <img src="/articles/hero/article-five-elements.webp" alt="五行學說" loading="lazy" onload="this.parentElement.classList.add('img-loaded')" />
           </div>
           <div class="article-card-body">
             <span class="article-card-category">五行學說</span>
-            <h3><a href="/articles/five-elements">五行相生相剋的奧秘</a></h3>
-            <p class="article-card-meta">10 分鐘閱讀</p>
+            <h3>五行相生相剋的奧秘</h3>
+            <p class="article-card-excerpt">探索金木水火土五行之間的互動關係與命理意涵。</p>
+            <span class="article-card-meta">10 分鐘閱讀</span>
           </div>
-        </article>
+        </a>
+      </div>
+      <div class="section-footer fade-up">
+        <a href="/articles" class="btn btn--outline btn--lg">瀏覽全部文章 →</a>
       </div>
     </div>
   </section>
@@ -422,14 +458,47 @@ import Base from '../layouts/Base.astro';
     width: 100%;
   }
 
-  .hero-proof {
+  .hero-trust {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
     margin-top: 1.5rem;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.6);
   }
 
-  .hero-proof strong {
+  .hero-trust-avatars {
+    display: flex;
+  }
+
+  .hero-trust-avatars img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    margin-left: -8px;
+  }
+
+  .hero-trust-avatars img:first-child {
+    margin-left: 0;
+  }
+
+  .hero-trust p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+  }
+
+  .hero-trust strong {
     color: rgba(255, 255, 255, 0.9);
+  }
+
+  .hero-content h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #d4384a, #d4a017);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   @media (max-width: 480px) {
