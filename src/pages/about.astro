@@ -218,6 +218,13 @@ import Base from '../layouts/Base.astro';
     background: var(--surface-alt);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+  }
+
+  .about-contact-card:hover {
+    border-color: var(--jade-glow);
+    box-shadow: 0 8px 24px rgba(178, 34, 52, 0.06);
+    transform: translateY(-2px);
   }
 
   .about-contact-card h3 {

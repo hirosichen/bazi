@@ -57,7 +57,6 @@
   /* Typography */
   --font-sans: 'Noto Sans TC Variable', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Noto Serif TC', 'Songti TC', Georgia, serif;
-  --font-display: 'ZCOOL XiaoWei', 'Noto Serif TC', serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
 
   /* Responsive font sizes */
@@ -1042,7 +1041,7 @@ strong { font-weight: 700; }
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--jade), var(--bronze));
+  background: var(--card-accent, var(--jade));
   border-radius: 12px 12px 0 0;
   opacity: 0;
   transition: var(--transition-base);
@@ -1052,8 +1051,8 @@ strong { font-weight: 700; }
 
 .value-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(178, 34, 52, 0.12), 0 4px 12px rgba(0,0,0,0.08);
-  border-color: var(--jade-glow);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
 }
 
 .value-card:hover::before {
@@ -1160,14 +1159,14 @@ strong { font-weight: 700; }
   color: var(--white);
   letter-spacing: -0.02em;
   margin-bottom: var(--space-xs);
-  font-family: var(--font-display);
-  text-shadow: 0 0 30px rgba(178, 34, 52, 0.3);
+  font-family: var(--font-serif);
+  text-shadow: 0 0 40px rgba(178, 34, 52, 0.25);
 }
 
 .stat-label {
   font-size: var(--text-xs);
-  color: var(--grey-light);
-  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -1273,6 +1272,7 @@ strong { font-weight: 700; }
 
 .tool-card-link:hover {
   gap: 8px;
+  color: var(--jade-dark);
 }
 
 .tool-card--primary {
@@ -1429,12 +1429,26 @@ strong { font-weight: 700; }
 .article-card-meta {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  justify-content: space-between;
   font-size: var(--text-xs);
   color: var(--grey-light);
   margin-top: auto;
   padding-top: var(--space-md);
   border-top: 1px solid var(--border-color);
+}
+
+.article-card-meta::after {
+  content: '→';
+  font-size: var(--text-sm);
+  color: var(--jade);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.article-card:hover .article-card-meta::after {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .section-footer {
@@ -1555,7 +1569,7 @@ strong { font-weight: 700; }
   top: 10px;
   right: var(--space-lg);
   font-size: 4rem;
-  font-family: var(--font-display);
+  font-family: var(--font-serif);
   color: var(--jade);
   line-height: 1;
   opacity: 0.1;
@@ -1570,6 +1584,17 @@ strong { font-weight: 700; }
   transform: translateY(-4px);
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
   border-color: var(--jade-glow);
+}
+
+/* Featured testimonial */
+.testimonial-card--featured {
+  background: linear-gradient(135deg, rgba(178, 34, 52, 0.04), rgba(184, 134, 11, 0.03));
+  border-color: var(--jade-glow);
+  box-shadow: 0 4px 20px rgba(178, 34, 52, 0.08);
+}
+
+.testimonial-card--featured .testimonial-stars {
+  color: var(--jade);
 }
 
 /* ---------- 12. Newsletter ---------- */
@@ -1718,6 +1743,7 @@ strong { font-weight: 700; }
   color: var(--white);
   margin-bottom: var(--space-md);
   font-size: var(--text-3xl);
+  font-family: var(--font-serif);
 }
 
 .cta-section p {
@@ -1743,7 +1769,7 @@ strong { font-weight: 700; }
 }
 
 .newsletter-section p {
-  color: var(--silver);
+  color: rgba(255, 255, 255, 0.75);
   margin-bottom: var(--space-xl);
 }
 
@@ -1838,6 +1864,14 @@ strong { font-weight: 700; }
 
 .article-card:hover .article-card-img img {
   transform: scale(1.05);
+}
+
+.article-card:hover .article-card-body h3 {
+  color: var(--jade);
+}
+
+.article-card-body h3 {
+  transition: color 0.25s ease;
 }
 
 /* Testimonial text styling */
@@ -1983,6 +2017,7 @@ strong { font-weight: 700; }
 .footer-cta h2 {
   color: var(--white);
   font-size: var(--text-3xl);
+  font-family: var(--font-serif);
   margin-bottom: var(--space-sm);
 }
 
@@ -2060,7 +2095,7 @@ strong { font-weight: 700; }
 }
 
 .footer-col a:hover {
-  color: var(--jade-light);
+  color: var(--white);
   transform: translateX(4px);
 }
 
@@ -2431,8 +2466,8 @@ strong { font-weight: 700; }
 
 .back-to-top:hover {
   background: var(--jade-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-jade);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(178, 34, 52, 0.3);
 }
 
 /* ---------- 21. Mobile Sticky CTA ---------- */
@@ -2655,7 +2690,11 @@ strong { font-weight: 700; }
   }
 
   .mobile-sticky-cta {
-    display: block;
+    display: flex;
+  }
+
+  body {
+    padding-bottom: 56px;
   }
 
   .stats-row {
@@ -2726,8 +2765,16 @@ strong { font-weight: 700; }
   }
 
   .back-to-top {
-    bottom: calc(var(--space-xl) + 60px);
+    bottom: calc(var(--space-xl) + 56px);
     right: var(--space-md);
+  }
+
+  .footer-cta {
+    padding: var(--space-3xl) 0;
+  }
+
+  .footer-cta h2 {
+    font-size: var(--text-2xl);
   }
 
   .stats-grid {
@@ -2738,9 +2785,9 @@ strong { font-weight: 700; }
 
 /* ---------- 25. Display Typography ---------- */
 .display-heading {
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: 0.06em;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 /* Section decorative dividers */
@@ -2803,13 +2850,14 @@ strong { font-weight: 700; }
 
 /* Enhanced section headers with display font */
 .section-header h2 {
-  font-family: var(--font-display);
-  letter-spacing: 0.04em;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 /* Decorative quote marks for testimonials */
 .testimonial-card::before {
-  font-family: var(--font-display);
+  font-family: var(--font-serif);
 }
 
 /* Staggered animation delays for grid children */
@@ -2878,12 +2926,12 @@ strong { font-weight: 700; }
 }
 
 .article-hero-content h1 {
-  font-family: var(--font-display);
+  font-family: var(--font-serif);
   font-size: clamp(1.8rem, 4vw, 2.5rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--white);
   margin: var(--space-md) 0;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   line-height: 1.4;
 }
 
@@ -2913,7 +2961,7 @@ strong { font-weight: 700; }
 }
 
 .article-cta h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-serif);
   margin-bottom: var(--space-sm);
   color: var(--near-black);
 }
